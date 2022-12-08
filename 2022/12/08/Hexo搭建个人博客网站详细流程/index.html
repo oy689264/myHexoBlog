@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Hexo搭建个人博客网站详细流程 | Hexo</title>
+  <meta name="keywords" content="">
+  <meta name="description" content="Hexo搭建个人博客网站详细流程 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="一、准备工作1、了解Hexo Hexo是高效的静态站点生成框架，它基于Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了 Markdown 本身的语法之外，还可以使用 Hexo 提供的标签插件来快速的插入特定形式的内容，而且相对于其他框架，Hexo在速度上也有很大优势。  2、搭建Node.js环境 我们了解到Hexo基于Node.js的，那么我们搭建博客网站首先">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo搭建个人博客网站详细流程">
+<meta property="og:url" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="一、准备工作1、了解Hexo Hexo是高效的静态站点生成框架，它基于Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了 Markdown 本身的语法之外，还可以使用 Hexo 提供的标签插件来快速的插入特定形式的内容，而且相对于其他框架，Hexo在速度上也有很大优势。  2、搭建Node.js环境 我们了解到Hexo基于Node.js的，那么我们搭建博客网站首先">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y1.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y2.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y3.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y4.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y5.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y6.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y7.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y8.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y9.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y10.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y11.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y12.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472365842-40.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472352783-37.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472340586-34.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/20201221163233102.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70.png">
+<meta property="og:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472306484-27.png">
+<meta property="article:published_time" content="2022-12-08T04:01:27.000Z">
+<meta property="article:modified_time" content="2022-12-08T05:10:13.205Z">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y1.png">
+
+
+<link rel="icon" href="/img/avatara.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatara.jpg"/>
+</a>
+<div class="author">
+    <span>John Doe</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="rss"
+               href="/atom.xml"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-rss"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="github"
+               href="https://github.com/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-github"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="facebook"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-facebook"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+    
+        
+            <a title="instagram"
+               href="https://www.facebook.com/faker.tops"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-instagram"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="reddit"
+               href="https://www.reddit.com/user/yelog/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-reddit"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="weibo"
+               href="http://weibo.com/u/2307534817"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-weibo"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="jianshu"
+               href="https://www.jianshu.com/u/ff56736de7cf"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-jianshu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="zhihu"
+               href="https://www.zhihu.com/people/jaytp/activities"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-zhihu"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="oschina"
+               href="https://my.oschina.net/yelog"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-oschina"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+    
+        
+            <a title="email"
+               href="mailto:jaytp@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=872336115&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="kugou"
+               href="https://www.kugou.com/"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-kugou"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="neteasemusic"
+               href="https://music.163.com/#/user/home?id=88151013"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-neteasemusic"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="All">All
+            
+                <small>(1)</small>
+            
+        </div>
+    </li>
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">About</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">Friends</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="1">
+
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        Links
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="http://yelog.org/">叶落阁</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">All</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="All "
+           href="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="Hexo搭建个人博客网站详细流程">Hexo搭建个人博客网站详细流程</span>
+            <span class="post-date" title="2022-12-08 12:01:27">2022/12/08</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-Hexo搭建个人博客网站详细流程" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">Hexo搭建个人博客网站详细流程</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        
+    </div>
+    <div class="article-meta">
+        
+            Created At : <time class="date" title='Updated At: 2022-12-08 13:10:13'>2022-12-08 12:01</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        
+        <span id="busuanzi_container_page_pv">
+            Views 👀 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-text">一、准备工作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E4%BA%86%E8%A7%A3Hexo"><span class="toc-text">1、了解Hexo</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E6%90%AD%E5%BB%BANode-js%E7%8E%AF%E5%A2%83"><span class="toc-text">2、搭建Node.js环境</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81%E5%AE%89%E8%A3%85Hexo%E5%8D%9A%E5%AE%A2%E6%A1%86%E6%9E%B6%E5%B7%A5%E5%85%B7"><span class="toc-text">3、安装Hexo博客框架工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E5%AE%89%E8%A3%85Git%E7%89%88%E6%9C%AC%E5%B7%A5%E5%85%B7"><span class="toc-text">4、安装Git版本工具</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81%E6%B3%A8%E5%86%8CGithub%E8%B4%A6%E5%8F%B7"><span class="toc-text">5、注册Github账号</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%BC%80%E5%A7%8B%E6%90%AD%E5%BB%BA%E5%8D%9A%E5%AE%A2"><span class="toc-text">二、开始搭建博客</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81%E6%96%B0%E5%BB%BAGitHub%E4%BB%93%E5%BA%93"><span class="toc-text">1、新建GitHub仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81%E5%88%9B%E5%BB%BA%E6%9C%AC%E5%9C%B0%E5%8D%9A%E5%AE%A2%E7%AB%99%E7%82%B9"><span class="toc-text">2、创建本地博客站点</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#3%E3%80%81%E5%90%8C%E6%AD%A5Github-%E5%85%81%E8%AE%B8%E5%85%AC%E5%85%B1%E8%AE%BF%E9%97%AE"><span class="toc-text">3、同步Github,允许公共访问</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Hexo%E7%9A%84%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-text">三、Hexo的基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81Hexo%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4%EF%BC%9A"><span class="toc-text">1、Hexo常用命令：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2%E3%80%81Hexo%E6%9B%B4%E6%8D%A2%E4%B8%BB%E9%A2%98%EF%BC%9A"><span class="toc-text">2、Hexo更换主题：</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E7%BB%91%E5%AE%9A%E8%87%AA%E5%B7%B1%E7%9A%84%E5%9F%9F%E5%90%8D"><span class="toc-text">四、绑定自己的域名</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1%E3%80%81-%E6%B2%A1%E6%9C%89%E5%9F%9F%E5%90%8D%E7%9A%84%E8%AF%9D%E5%85%88%E5%8E%BB%E7%94%B3%E8%AF%B7%E4%B8%80%E4%B8%AA%E5%9F%9F%E5%90%8D"><span class="toc-text">1、 没有域名的话先去申请一个域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E3%80%81%E5%9C%A8%E4%BB%93%E5%BA%93%E9%87%8C%E6%B7%BB%E5%8A%A0CNAME%E6%96%87%E4%BB%B6%E5%B9%B6%E5%9C%A8%E6%96%87%E4%BB%B6%E4%B8%AD%E5%A1%AB%E5%86%99%E7%BB%91%E5%AE%9A%E7%9A%84%E5%9F%9F%E5%90%8D"><span class="toc-text">2 、在仓库里添加CNAME文件并在文件中填写绑定的域名</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3%E3%80%81-%E6%B7%BB%E5%8A%A0%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90"><span class="toc-text">3、 添加域名解析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4%E3%80%81%E4%BF%AE%E6%94%B9%E4%BD%A0%E7%9A%84%E5%9F%9F%E5%90%8D%E8%A7%A3%E6%9E%90%E8%AE%B0%E5%BD%95"><span class="toc-text">4、修改你的域名解析记录</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5%E3%80%81-%E7%AD%89%E5%BE%85%E4%BD%A0%E7%9A%84-DNS-%E9%85%8D%E7%BD%AE%E7%94%9F%E6%95%88"><span class="toc-text">5、 等待你的 DNS 配置生效</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8-HTTPS"><span class="toc-text">启用 HTTPS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E4%BD%BF%E7%94%A8%E6%9C%AC%E5%9C%B0%E5%9B%BE%E7%89%87"><span class="toc-text">五、使用本地图片</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、准备工作"><a href="#一、准备工作" class="headerlink" title="一、准备工作"></a>一、准备工作</h2><h3 id="1、了解Hexo"><a href="#1、了解Hexo" class="headerlink" title="1、了解Hexo"></a>1、了解Hexo</h3><blockquote>
+<p>Hexo是高效的静态站点生成框架，它基于Node.js。 通过 Hexo 你可以轻松地使用 Markdown 编写文章，除了 Markdown 本身的语法之外，还可以使用 Hexo 提供的标签插件来快速的插入特定形式的内容，而且相对于其他框架，Hexo在速度上也有很大优势。</p>
+</blockquote>
+<h3 id="2、搭建Node-js环境"><a href="#2、搭建Node-js环境" class="headerlink" title="2、搭建Node.js环境"></a>2、搭建Node.js环境</h3><blockquote>
+<p>我们了解到Hexo基于Node.js的，那么我们搭建博客网站首先需要安装Node.js环境。 Node.js 是一个基于 Chrome V8 引擎的 JavaScript 运行环境，可以在非浏览器环境下，解释运行 JS 代码。<br>下载地址：<a target="_blank" rel="noopener" href="http://nodejs.cn/download">http://nodejs.cn/download</a><br>测试安装：命令行使用node -v 、mpm -v，查看显示版本号即成功。</p>
+</blockquote>
+<h3 id="3、安装Hexo博客框架工具"><a href="#3、安装Hexo博客框架工具" class="headerlink" title="3、安装Hexo博客框架工具"></a>3、安装Hexo博客框架工具</h3><blockquote>
+<p>Hexo是一个建站工具，可以帮助我们快速生成基本的博客文件，安装它需要在控制台下使用如下命令：</p>
+</blockquote>
+<pre><code>npm install hexo-cli -g
+yarn add hexo-cli -g12
+</code></pre>
+<blockquote>
+<p>若报错，请尝试在命令前加上sudo</p>
+</blockquote>
+<h3 id="4、安装Git版本工具"><a href="#4、安装Git版本工具" class="headerlink" title="4、安装Git版本工具"></a>4、安装Git版本工具</h3><blockquote>
+<p>Git是目前世界上最流行的分布式版本控制系统，是的，没有之一。使用Git可以帮助我们把本地的网页和文章等内容提交到Gihub上，实现同步。<br>下载地址：<a target="_blank" rel="noopener" href="https://git-scm.com/downloads">https://git-scm.com/downloads</a></p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y1.png" alt="img"></p>
+<blockquote>
+<p>右键单击桌面出现Git Bash Here选项则表示成功，<code>git --version</code> 可以查看版本号。</p>
+</blockquote>
+<h3 id="5、注册Github账号"><a href="#5、注册Github账号" class="headerlink" title="5、注册Github账号"></a>5、注册Github账号</h3><blockquote>
+<p>gitHub是一个面向开源及私有软件项目的托管平台，因为只支持git 作为唯一的版本库格式进行托管，故名gitHub。这里用到Github，是因为我们需要通过Github得到自己的博客网站域名，而且需要使用gitHub同步我们个人博客的相关文件。<br>注册地址：<a target="_blank" rel="noopener" href="https://github.com/">https://github.com</a></p>
+</blockquote>
+<h2 id="二、开始搭建博客"><a href="#二、开始搭建博客" class="headerlink" title="二、开始搭建博客"></a>二、开始搭建博客</h2><h3 id="1、新建GitHub仓库"><a href="#1、新建GitHub仓库" class="headerlink" title="1、新建GitHub仓库"></a>1、新建GitHub仓库</h3><blockquote>
+<p>搭建我们的个人博客需要一个唯一的域名，当然我们可以申请购买一个域名来使用，但是在不是太必要的情况下，我们也可以通过Github Pages获得一个免费使用的域名，这需要我们在Github上新建一个仓库，如下：</p>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y2.png" alt="img"></p>
+<p>这个过程和建立普通的仓库没什么区别，关键在于新仓库的名字，一定要是UserName+“github.io”的形式。这也是之前强调的要起一个好的用户名的原因。这样之后我们最后的博客网站的链接就会是：</p>
+<p><a target="_blank" rel="noopener" href="https://username.github.io的形式./">https://UserName.github.io的形式。</a></p>
+</blockquote>
+<h3 id="2、创建本地博客站点"><a href="#2、创建本地博客站点" class="headerlink" title="2、创建本地博客站点"></a>2、创建本地博客站点</h3><blockquote>
+<p>使用Hexo在本地先创建一个本地博客站点:</p>
+</blockquote>
+<pre><code>hexo init  myHexoBlog  //myHexoBlog是项目名1
+</code></pre>
+<blockquote>
+<p>创建完成之后，进入目录先安装依赖包：</p>
+</blockquote>
+<pre><code>npm install1
+</code></pre>
+<blockquote>
+<p>下面来测试本地博客站点，在本地博客根目录下使用控制台命令：</p>
+</blockquote>
+<pre><code>hexo g  //g是generetor的缩写，生成博客
+hexo s  //s是server的缩写，启动服务12
+</code></pre>
+<blockquote>
+<p>此时打开浏览器，输入 <a target="_blank" rel="noopener" href="http://localhost:4000/%EF%BC%8C">http://localhost:4000/，</a> 我们将会看到Hexo自带默认主题显示的博客样式如下:</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y3.png" alt="img"></p>
+<h4 id="3、同步Github-允许公共访问"><a href="#3、同步Github-允许公共访问" class="headerlink" title="3、同步Github,允许公共访问"></a>3、同步Github,允许公共访问</h4><blockquote>
+<p>在本地我们已经搭建了博客，但是还只能自己本地访问。若要别人也能看到，那就需要我们将其同步部署到GitHub上了。还记得我们之前准备的Github仓库吗，这里就要用到了。<br>首先找到我们的博客仓库，并拷贝仓库地址：</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y4.png" alt="img"></p>
+<blockquote>
+<p>然后修改本地博客目录的配置：<br>修改本次博客根目录下的_config.yml文件，修改deploy下的配置如下：</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y5.png" alt="img"></p>
+<blockquote>
+<p>安装上传GitHub的插件：</p>
+</blockquote>
+<pre><code>npm install hexo-deployer-git —save //安装部署插件1
+</code></pre>
+<blockquote>
+<p>把代码推送到github：</p>
+</blockquote>
+<pre><code>hexo d //部署到github1
+</code></pre>
+<blockquote>
+<p>最后我们开启GitHubPages：</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y6.png" alt="img"></p>
+<blockquote>
+<p>就可以通过：https:&#x2F;&#x2F;自己的用户名.github.io&#x2F; 去访问了</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y7.png" alt="img"></p>
+<h2 id="三、Hexo的基本操作"><a href="#三、Hexo的基本操作" class="headerlink" title="三、Hexo的基本操作"></a>三、Hexo的基本操作</h2><h3 id="1、Hexo常用命令："><a href="#1、Hexo常用命令：" class="headerlink" title="1、Hexo常用命令："></a>1、Hexo常用命令：</h3><pre><code>hexo clean // 清理
+hexo new &quot;文章名称&quot; // 新建文章
+hexo g // 生成public文件夹
+hexo s // 开启本地服务器
+hexo d // 推送到github仓库12345
+</code></pre>
+<h3 id="2、Hexo更换主题："><a href="#2、Hexo更换主题：" class="headerlink" title="2、Hexo更换主题："></a>2、Hexo更换主题：</h3><blockquote>
+<p>在Hexo主题页面找到自己喜欢的主题，链接地址：<code>https://hexo.io/themes/</code></p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y8.png" alt="img"></p>
+<blockquote>
+<p>进入到主题仓库复制地址：</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y9.png" alt="img"></p>
+<blockquote>
+<p>在项目控制台执行如下命令：</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y10.png" alt="img"></p>
+<blockquote>
+<p>在 _config.yml 文件下修改主题为刚下载的主题：</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y11.png" alt="img"></p>
+<blockquote>
+<p>重新启动项目就能看到主题改变了：</p>
+</blockquote>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/Y12.png" alt="img"></p>
+<h2 id="四、绑定自己的域名"><a href="#四、绑定自己的域名" class="headerlink" title="四、绑定自己的域名"></a>四、绑定自己的域名</h2><h3 id="1、-没有域名的话先去申请一个域名"><a href="#1、-没有域名的话先去申请一个域名" class="headerlink" title="1、 没有域名的话先去申请一个域名"></a>1、 没有域名的话先去申请一个域名</h3><p>如果你没有域名的话，可以先到阿里云：<a target="_blank" rel="noopener" href="https://mi.aliyun.com/%E8%B4%AD%E4%B9%B0%E4%B8%80%E4%B8%AA%E5%9F%9F%E5%90%8D%EF%BC%8C%E8%B4%AD%E4%B9%B0%E5%AE%8C%E6%88%90%E4%B9%8B%E5%90%8E%E4%B8%8D%E7%94%A8%E5%A4%87%E6%A1%88%E5%B0%B1%E5%8F%AF%E4%BB%A5%EF%BC%88%E6%88%91%E4%B8%80%E5%BC%80%E5%A7%8B%E4%BB%A5%E4%B8%BA%E8%BF%98%E8%A6%81%E5%A4%87%E6%A1%88%EF%BC%8C%E6%89%80%E4%BB%A5%E5%89%8D%E5%89%8D%E5%90%8E%E5%90%8E%E6%8B%96%E4%BA%86%E5%BE%88%E4%B9%85%EF%BC%89">https://mi.aliyun.com/购买一个域名，购买完成之后不用备案就可以（我一开始以为还要备案，所以前前后后拖了很久）</a></p>
+<p>或者到腾讯云购买域名：域名注册购买_域名注册选购 - 腾讯云</p>
+<h3 id="2-、在仓库里添加CNAME文件并在文件中填写绑定的域名"><a href="#2-、在仓库里添加CNAME文件并在文件中填写绑定的域名" class="headerlink" title="2 、在仓库里添加CNAME文件并在文件中填写绑定的域名"></a>2 、在仓库里添加CNAME文件并在文件中填写绑定的域名</h3><p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472365842-40.png" alt="img"></p>
+<p>文件内容如下：（文件里填写要绑定的域名且不要包含Http:&#x2F;&#x2F;和www） 说白了就是你购买的域名，前面不要 http  和 www  </p>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472352783-37.png" alt="img"></p>
+<p>进入设置，找到 Custom domain添加域名后保存即可（添加CNAME文件并在文件中填写绑定的域名后应该会自动保存，看看有没有自动保存）<img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472340586-34.png" alt="img"></p>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/20201221163233102.png" alt="img"></p>
+<h3 id="3、-添加域名解析"><a href="#3、-添加域名解析" class="headerlink" title="3、 添加域名解析"></a>3、 添加域名解析</h3><p>ping你的<a target="_blank" rel="noopener" href="http://github.io域名,得到一个ip;/">http://github.io域名，得到一个IP；</a></p>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70.png" alt="img"></p>
+<h3 id="4、修改你的域名解析记录"><a href="#4、修改你的域名解析记录" class="headerlink" title="4、修改你的域名解析记录"></a>4、修改你的域名解析记录</h3><p>添加两个A记录，用得到的IP，</p>
+<p>一个主机记录为：“www”，</p>
+<p>一个为“@”，这样通过ndd712.cn和<a target="_blank" rel="noopener" href="http://www.ndd712.cn都能访问到你的博客了./">www.ndd712.cn都能访问到你的博客了。</a></p>
+<p><img src="/2022/12/08/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzQxNjQ2MjQ5,size_16,color_FFFFFF,t_70-1670472306484-27.png" alt="img"></p>
+<h3 id="5、-等待你的-DNS-配置生效"><a href="#5、-等待你的-DNS-配置生效" class="headerlink" title="5、 等待你的 DNS 配置生效"></a>5、 等待你的 DNS 配置生效</h3><p>对DNS的配置不是立即生效的，过10分钟再去访问你的域名看看有没有配置成功 : )</p>
+<ol start="6">
+<li><h3 id="启用-HTTPS"><a href="#启用-HTTPS" class="headerlink" title="启用 HTTPS"></a>启用 HTTPS</h3></li>
+</ol>
+<p>  自 2018 年 5 月 1 日，Github 支持自定义域名的 HTTPS 请求了。</p>
+<p>配置也相当简单，只需要更新 DNS 配置里的 A 记录，将其指向以下4个 IP 地址中的至少一个。</p>
+<p>185.199.108.153<br>185.199.109.153<br>185.199.110.153<br>185.199.111.153<br>HTTPS 让你的网站和网站访客更安全，并且 Github 提供的这些 IP 地址自动将你的站点加入了 CDN，提高了访问速度。</p>
+<p>你还可以在 GiHub Pages 仓库的设置里勾选 ‘Enforce HTTPS’，这样所有访问你站点的请求都会走 HTTPS。</p>
+<h2 id="五、使用本地图片"><a href="#五、使用本地图片" class="headerlink" title="五、使用本地图片"></a>五、使用本地图片</h2><p>如需启用：</p>
+<pre><code>_config.ymlpost_asset_folder: true
+marked:
+  prependRoot: true
+  postAsset: true
+</code></pre>
+<p>启用后，资源图片将会被自动解析为其对应文章的路径。<br>例如： <code>image.jpg</code> 位置为 <code>/2020/01/02/foo/image.jpg</code> ，这表示它是 <code>/2020/01/02/foo/</code> 文章的一张资源图片， <code>![](image.jpg)</code> 将会被解析为 <code>&lt;img src=&quot;/2020/01/02/foo/image.jpg&quot;&gt;</code> 。</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 转载请注明来源，欢迎对文章中的引用来源进行考证，欢迎指出任何有错误或不够清晰的表达。可以在下面评论区评论，也可以邮件至 jaytp@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">💰</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2016-2020 Yelog
+</p>
+<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>Help us with donation</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">alipay</label></span><span><label><input type="radio" name="pay" value="weixin">weixin</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

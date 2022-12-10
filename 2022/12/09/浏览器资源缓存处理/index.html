@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>浏览器资源缓存处理 | Hexo</title>
+  <meta name="keywords" content=" 前端面试 , 浏览器原理 ">
+  <meta name="description" content="浏览器资源缓存处理 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Why Blog重新开始之前自己的博客服务器数据库被黑了，要价三千，不然撕票。只能忍痛放弃了，欸。 关于个人博客到目前为止已经写了篇文章， 共字。 本站访问人数：人次 ， 访问量：次">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://www.aiwusihan.top/about.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Why Blog重新开始之前自己的博客服务器数据库被黑了，要价三千，不然撕票。只能忍痛放弃了，欸。 关于个人博客到目前为止已经写了篇文章， 共字。 本站访问人数：人次 ， 访问量：次">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-10T09:02:55.772Z">
+<meta property="article:modified_time" content="2022-12-08T06:25:54.431Z">
+<meta property="article:author" content="世思">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatara.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatara.jpg"/>
+</a>
+<div class="author">
+    <span>世思</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="email"
+               href="mailto:1487968109@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1487968109&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(8)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="js">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        js
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="js<--->Web-API">
+                                        
+                                        Web-API
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="js<--->理论知识">
+                                        
+                                        理论知识
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="工具">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        工具
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="工具<--->博客">
+                                        
+                                        博客
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="工具<--->demo">
+                                        
+                                        demo
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_word_count" value="14.2k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="/">暂无</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>兼容性低</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>浏览器原理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>爬虫</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>前端面试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>实验中</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>自动化</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2022/12/10/JavaScript%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="JavaScript变量提升">JavaScript变量提升</span>
+            <span class="post-date" title="2022-12-10 16:40:55">2022/12/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/10/JS%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1Event/"
+           data-tag="爬虫,自动化"
+           data-author="" >
+            <span class="post-title" title="JS中的事件对象Event">JS中的事件对象Event</span>
+            <span class="post-date" title="2022-12-10 15:29:37">2022/12/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2022/12/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86/"
+           data-tag="前端面试,浏览器原理"
+           data-author="" >
+            <span class="post-title" title="浏览器资源缓存处理">浏览器资源缓存处理</span>
+            <span class="post-date" title="2022-12-09 22:16:16">2022/12/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/08/%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="事件绑定">事件绑定</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/08/%E5%85%83%E7%B4%A0%E8%A7%86%E5%8F%A3%E5%8F%AF%E8%A7%81api/"
+           data-tag="实验中,兼容性低"
+           data-author="" >
+            <span class="post-title" title="元素视口可见api">元素视口可见api</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 demo "
+           href="/2022/12/08/%E7%AE%80%E6%98%93%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简易代码示例">简易代码示例</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2018/03/25/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="事件循环">事件循环</span>
+            <span class="post-date" title="2018-03-25 15:13:47">2018/03/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 博客 "
+           href="/2018/03/23/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人博客搭建">个人博客搭建</span>
+            <span class="post-date" title="2018-03-23 15:13:47">2018/03/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-浏览器资源缓存处理" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">浏览器资源缓存处理</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="js">js</a> > 
+            
+            <a  data-rel="js&lt;---&gt;理论知识">理论知识</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">前端面试</a>
+            
+            <a class="color1">浏览器原理</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-12-10 11:49:55'>2022-12-09 22:16</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.6k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98"><span class="toc-text">浏览器缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E5%AF%B9%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E7%BC%93%E5%AD%98%E6%9C%BA%E5%88%B6%E7%9A%84%E7%90%86%E8%A7%A3"><span class="toc-text">1. 对浏览器的缓存机制的理解</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98%E5%92%8C%E5%BC%BA%E7%BC%93%E5%AD%98%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-text">2. 协商缓存和强缓存的区别</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%881%EF%BC%89%E5%BC%BA%E7%BC%93%E5%AD%98"><span class="toc-text">（1）强缓存</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%EF%BC%882%EF%BC%89%E5%8D%8F%E5%95%86%E7%BC%93%E5%AD%98"><span class="toc-text">（2）协商缓存</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E6%B5%8F%E8%A7%88%E5%99%A8%E7%BC%93%E5%AD%98%EF%BC%9F"><span class="toc-text">3. 为什么需要浏览器缓存？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E7%82%B9%E5%87%BB%E5%88%B7%E6%96%B0%E6%8C%89%E9%92%AE%E6%88%96%E8%80%85%E6%8C%89-F5%E3%80%81%E6%8C%89-Ctrl-F5-%EF%BC%88%E5%BC%BA%E5%88%B6%E5%88%B7%E6%96%B0%EF%BC%89%E3%80%81%E5%9C%B0%E5%9D%80%E6%A0%8F%E5%9B%9E%E8%BD%A6%E6%9C%89%E4%BB%80%E4%B9%88%E5%8C%BA%E5%88%AB%EF%BC%9F"><span class="toc-text">4. 点击刷新按钮或者按 F5、按 Ctrl+F5 （强制刷新）、地址栏回车有什么区别？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-vue-%E7%BC%93%E5%AD%98%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88%E7%A4%BA%E4%BE%8B"><span class="toc-text">5. vue  缓存解决方案示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E7%89%B9%E6%AE%8A%E6%83%85%E5%86%B5%EF%BC%8C%E6%9C%8D%E5%8A%A1%E5%99%A8%E8%AE%BE%E7%BD%AE"><span class="toc-text">6.特殊情况，服务器设置</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="浏览器缓存"><a href="#浏览器缓存" class="headerlink" title="浏览器缓存"></a>浏览器缓存</h2><h3 id="1-对浏览器的缓存机制的理解"><a href="#1-对浏览器的缓存机制的理解" class="headerlink" title="1. 对浏览器的缓存机制的理解"></a>1. 对浏览器的缓存机制的理解</h3><p><strong>浏览器缓存的全过程：</strong></p>
+<ul>
+<li>浏览器第一次加载资源，服务器返回 200，浏览器从服务器下载资源文件，并缓存资源文件与 response header，以供下次加载时对比使用；</li>
+<li>下一次加载资源时，由于强制缓存优先级较高，先比较当前时间与上一次返回 200 时的时间差，如果没有超过 cache-control 设置的 max-age，则没有过期，并命中强缓存，直接从本地读取资源。如果浏览器不支持HTTP1.1，则使用 expires 头判断是否过期；</li>
+<li>如果资源已过期，则表明强制缓存没有被命中，则开始协商缓存，向服务器发送带有 If-None-Match 和 If-Modified-Since 的请求；</li>
+<li>服务器收到请求后，优先根据 Etag 的值判断被请求的文件有没有做修改，Etag 值一致则没有修改，命中协商缓存，返回 304；如果不一致则有改动，直接返回新的资源文件带上新的 Etag 值并返回 200；</li>
+<li>如果服务器收到的请求没有 Etag 值，则将 If-Modified-Since 和被请求文件的最后修改时间做比对，一致则命中协商缓存，返回 304；不一致则返回新的 last-modified 和文件并返回 200；</li>
+</ul>
+<p><img src="/2022/12/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86/1618399660902-60a33dae-cedc-4bd0-9a5b-160c5da3f516.png" alt="img"></p>
+<p>很多网站的资源后面都加了版本号，这样做的目的是：每次升级了 JS 或 CSS 文件后，为了防止浏览器进行缓存，强制改变版本号，客户端浏览器就会重新下载新的 JS 或 CSS 文件 ，以保证用户能够及时获得网站的最新更新。</p>
+<h3 id="2-协商缓存和强缓存的区别"><a href="#2-协商缓存和强缓存的区别" class="headerlink" title="2. 协商缓存和强缓存的区别"></a>2. 协商缓存和强缓存的区别</h3><h4 id="（1）强缓存"><a href="#（1）强缓存" class="headerlink" title="（1）强缓存"></a>（1）强缓存</h4><p>使用强缓存策略时，如果缓存资源有效，则直接使用缓存资源，不必再向服务器发起请求。</p>
+<p>强缓存策略可以通过两种方式来设置，分别是 http 头信息中的 Expires 属性和 Cache-Control 属性。</p>
+<p>（1）服务器通过在响应头中添加 Expires 属性，来指定资源的过期时间。在过期时间以内，该资源可以被缓存使用，不必再向服务器发送请求。这个时间是一个绝对时间，它是服务器的时间，因此可能存在这样的问题，就是客户端的时间和服务器端的时间不一致，或者用户可以对客户端时间进行修改的情况，这样就可能会影响缓存命中的结果。</p>
+<p>（2）Expires 是 http1.0 中的方式，因为它的一些缺点，在 HTTP 1.1 中提出了一个新的头部属性就是 Cache-Control 属性，它提供了对资源的缓存的更精确的控制。它有很多不同的值，</p>
+<p><code>Cache-Control</code>可设置的字段：</p>
+<ul>
+<li><code>public</code>：设置了该字段值的资源表示可以被任何对象（包括：发送请求的客户端、代理服务器等等）缓存。这个字段值不常用，一般还是使用max-age&#x3D;来精确控制；</li>
+<li><code>private</code>：设置了该字段值的资源只能被用户浏览器缓存，不允许任何代理服务器缓存。在实际开发当中，对于一些含有用户信息的HTML，通常都要设置这个字段值，避免代理服务器(CDN)缓存；</li>
+<li><code>no-cache</code>：设置了该字段需要先和服务端确认返回的资源是否发生了变化，如果资源未发生变化，则直接使用缓存好的资源；</li>
+<li><code>no-store</code>：设置了该字段表示禁止任何缓存，每次都会向服务端发起新的请求，拉取最新的资源；</li>
+<li><code>max-age=</code>：设置缓存的最大有效期，单位为秒；</li>
+<li><code>s-maxage=</code>：优先级高于max-age&#x3D;，仅适用于共享缓存(CDN)，优先级高于max-age或者Expires头；</li>
+<li><code>max-stale[=]</code>：设置了该字段表明客户端愿意接收已经过期的资源，但是不能超过给定的时间限制。</li>
+</ul>
+<p>一般来说只需要设置其中一种方式就可以实现强缓存策略，当两种方式一起使用时，Cache-Control 的优先级要高于 Expires。</p>
+<p><strong>no-cache和no-store很容易混淆：</strong></p>
+<ul>
+<li>no-cache 是指先要和服务器确认是否有资源更新，在进行判断。也就是说没有强缓存，但是会有协商缓存；</li>
+<li>no-store 是指不使用任何缓存，每次请求都直接从服务器获取资源。</li>
+</ul>
+<h4 id="（2）协商缓存"><a href="#（2）协商缓存" class="headerlink" title="（2）协商缓存"></a>（2）协商缓存</h4><p>如果命中强制缓存，我们无需发起新的请求，直接使用缓存内容，如果没有命中强制缓存，如果设置了协商缓存，这个时候协商缓存就会发挥作用了。</p>
+<p>上面已经说到了，命中协商缓存的条件有两个：</p>
+<ul>
+<li><code>max-age=xxx</code> 过期了</li>
+<li>值为<code>no-store</code></li>
+</ul>
+<p>使用协商缓存策略时，会先向服务器发送一个请求，如果资源没有发生修改，则返回一个 304 状态，让浏览器使用本地的缓存副本。如果资源发生了修改，则返回修改后的资源。</p>
+<p>协商缓存也可以通过两种方式来设置，分别是 http 头信息中的 <strong>Etag</strong> 和 <strong>Last-Modified</strong> 属性。</p>
+<p>（1）服务器通过在响应头中添加 Last-Modified 属性来指出资源最后一次修改的时间，当浏览器下一次发起请求时，会在请求头中添加一个 If-Modified-Since 的属性，属性值为上一次资源返回时的 Last-Modified 的值。当请求发送到服务器后服务器会通过这个属性来和资源的最后一次的修改时间来进行比较，以此来判断资源是否做了修改。如果资源没有修改，那么返回 304 状态，让客户端使用本地的缓存。如果资源已经被修改了，则返回修改后的资源。使用这种方法有一个缺点，就是 Last-Modified 标注的最后修改时间只能精确到秒级，如果某些文件在1秒钟以内，被修改多次的话，那么文件已将改变了但是 Last-Modified 却没有改变，这样会造成缓存命中的不准确。</p>
+<p>（2）因为 Last-Modified 的这种可能发生的不准确性，http 中提供了另外一种方式，那就是 Etag 属性。服务器在返回资源的时候，在头信息中添加了 Etag 属性，这个属性是资源生成的唯一标识符，当资源发生改变的时候，这个值也会发生改变。在下一次资源请求时，浏览器会在请求头中添加一个 If-None-Match 属性，这个属性的值就是上次返回的资源的 Etag 的值。服务接收到请求后会根据这个值来和资源当前的 Etag 的值来进行比较，以此来判断资源是否发生改变，是否需要返回资源。通过这种方式，比 Last-Modified 的方式更加精确。</p>
+<p>当 Last-Modified 和 Etag 属性同时出现的时候，Etag 的优先级更高。使用协商缓存的时候，服务器需要考虑负载平衡的问题，因此多个服务器上资源的 Last-Modified 应该保持一致，因为每个服务器上 Etag 的值都不一样，因此在考虑负载平衡时，最好不要设置 Etag 属性。</p>
+<p><strong>总结：</strong></p>
+<p>强缓存策略和协商缓存策略在缓存命中时都会直接使用本地的缓存副本，区别只在于协商缓存会向服务器发送一次请求。它们缓存不命中时，都会向服务器发送请求来获取资源。在实际的缓存机制中，强缓存策略和协商缓存策略是一起合作使用的。浏览器首先会根据请求的信息判断，强缓存是否命中，如果命中则直接使用资源。如果不命中则根据头信息向服务器发起请求，使用协商缓存，如果协商缓存命中的话，则服务器不返回资源，浏览器直接使用本地资源的副本，如果协商缓存不命中，则浏览器返回最新的资源给浏览器。</p>
+<h3 id="3-为什么需要浏览器缓存？"><a href="#3-为什么需要浏览器缓存？" class="headerlink" title="3. 为什么需要浏览器缓存？"></a>3. 为什么需要浏览器缓存？</h3><p>对于浏览器的缓存，主要针对的是前端的静态资源，最好的效果就是，在发起请求之后，拉取相应的静态资源，并保存在本地。如果服务器的静态资源没有更新，那么在下次请求的时候，就直接从本地读取即可，如果服务器的静态资源已经更新，那么我们再次请求的时候，就到服务器拉取新的资源，并保存在本地。这样就大大的减少了请求的次数，提高了网站的性能。这就要用到浏览器的缓存策略了。</p>
+<p>所谓的<strong>浏览器缓存</strong>指的是浏览器将用户请求过的静态资源，存储到电脑本地磁盘中，当浏览器再次访问时，就可以直接从本地加载，不需要再去服务端请求了。</p>
+<p>使用浏览器缓存，有以下优点：</p>
+<ul>
+<li>减少了服务器的负担，提高了网站的性能</li>
+<li>加快了客户端网页的加载速度</li>
+<li>减少了多余网络数据传输</li>
+</ul>
+<h3 id="4-点击刷新按钮或者按-F5、按-Ctrl-F5-（强制刷新）、地址栏回车有什么区别？"><a href="#4-点击刷新按钮或者按-F5、按-Ctrl-F5-（强制刷新）、地址栏回车有什么区别？" class="headerlink" title="4. 点击刷新按钮或者按 F5、按 Ctrl+F5 （强制刷新）、地址栏回车有什么区别？"></a>4. 点击刷新按钮或者按 F5、按 Ctrl+F5 （强制刷新）、地址栏回车有什么区别？</h3><ul>
+<li><strong>点击刷新按钮或者按 F5：</strong>浏览器直接对本地的缓存文件过期，但是会带上If-Modifed-Since，If-None-Match，这就意味着服务器会对文件检查新鲜度，返回结果可能是 304，也有可能是 200。</li>
+<li><strong>用户按 Ctrl+F5（强制刷新）：</strong>浏览器不仅会对本地文件过期，而且不会带上 If-Modifed-Since，If-None-Match，相当于之前从来没有请求过，返回结果是 200。</li>
+<li>地址栏回车： 浏览器发起请求，按照正常流程，本地检查是否过期，然后服务器检查新鲜度，最后返回内容。</li>
+</ul>
+<h3 id="5-vue-缓存解决方案示例"><a href="#5-vue-缓存解决方案示例" class="headerlink" title="5. vue  缓存解决方案示例"></a>5. vue  缓存解决方案示例</h3><p>创建文件 .env.[ 自定义 ] </p>
+<pre><code class="js">VUE_APP_[ 自定义 ]= [自定义版本号any] 
+</code></pre>
+<p>vue.consig.js</p>
+<pre><code class="js">module.exports = &#123;
+    chainWebpack: config =&gt; &#123;
+        // 使用webpack.DefinePlugin
+        config.plugin(&#39;define&#39;).tap(args =&gt; &#123;
+            args[0][&#39;process.env&#39;].VUE_APP_[ 自定义 ] = (function () &#123;
+                const now = new Date()
+                return now.getFullYear() + format(now.getMonth() + 1) + format(now.getDate()) + format(now.getHours()) + format(now.getMinutes())
+                function format(num) &#123;
+                    return num &lt; 10 ? &#39;0&#39; + num : &#39;&#39; + num
+                &#125;
+            &#125;)()
+            return args
+        &#125;)
+    &#125;
+&#125;
+</code></pre>
+<p>main.js</p>
+<pre><code class="js">import Vue from &#39;vue&#39;
+import App from &#39;./App.vue&#39;
+
+const version = process.env.VUE_APP_[ 自定义 ]
+const localVersion = localStorage.getItem(&#39;projectVersion&#39;)
+if (!localVersion || version !== localVersion) &#123;
+    localStorage.clear()
+    localStorage.setItem(&#39;projectVersion&#39;, version)
+&#125;
+
+Vue.config.productionTip = false
+
+new Vue(&#123;
+    render: h =&gt; h(App),
+&#125;).$mount(&#39;#app&#39;)
+</code></pre>
+<p>清楚缓存的本质就是重新请求服务器资源，任何可以重新返回资源的方式都是可以实现的，如果是协商缓存可以使用这种方式修改Etag响应头，强缓存可以打包的时候在文件后面添加时间戳之类的。url 后面加?xxx&#x3D;xxx 都会重新请求资源以此实现重新请求，清空缓存。</p>
+<p><a target="_blank" rel="noopener" href="http://www.xxxxx.com/index.html">http://www.xxxxx.com/index.html</a></p>
+<p><a target="_blank" rel="noopener" href="http://www.xxxxx.com/index.html?test123123">http://www.xxxxx.com/index.html?test123123</a></p>
+<p>两个url打开的页面一样，但是后面这个有问号，说明不调用缓存的内容，而认为是一个新地址，重新读取。</p>
+<p>因为在做http请求的时候，如果浏览器检测到你的地址完全没变，会从缓存里读取先前请求过的数据，不再发送请求。有些时候是页面资源的加载，有些时候是API的get请求，都有可能。加上这个，会让浏览器认为这是一个新的地址，从而保证重新获取资源。</p>
+<blockquote>
+<p>相关请求头详情查看链接</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42989576/article/details/123695991">一文讲透HTTP缓存之ETag </a>        </p>
+<p> <a target="_blank" rel="noopener" href="https://blog.csdn.net/ljfrocky/article/details/123032502">说说HTTP缓存Cache-Control响应头</a></p>
+</blockquote>
+<h3 id="6-特殊情况，服务器设置"><a href="#6-特殊情况，服务器设置" class="headerlink" title="6.特殊情况，服务器设置"></a>6.特殊情况，服务器设置</h3><p><img src="/2022/12/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86/2933858555627833873.jpg" alt="img"></p>
+<p>  在开发时候经常遇到一个问题，我们根据版本号去控制缓存问题，当我们发布新版本，使用新的版本号的时候，发现<code>html</code>里面引用的版本号却是旧的版本号 ，原来是该html文件被缓存了，很多时候我们设置禁止<code>html</code>文件被缓存,但依然会出现被缓存的情况。</p>
+<pre><code>&lt;meta http-equiv=&quot;Expires&quot; content=&quot;0&quot; /&gt;
+&lt;meta http-equiv=&quot;Pragma&quot; content=&quot;no-cache&quot; /&gt;
+&lt;meta http-equiv=&quot;Cache-control&quot; content=&quot;no-cache&quot; /&gt;
+&lt;meta http-equiv=&quot;Cache&quot; content=&quot;no-cache&quot; /&gt;
+</code></pre>
+<p>  为什么我们有时候设置了<code>&lt;meta http-equiv=”Cache-control”content=”no-store”&gt;</code>这种强制性禁止缓存,我们的页面依然被缓存了？</p>
+<p>  因为我们只关注了客户端，却忽略了<a target="_blank" rel="noopener" href="https://www.qycn.com/">服务器</a>端的设置，如果服务器端nginx设置了<code>Cache-control</code>，他是会覆盖掉我们页面中设置的的<code>Cache-control</code>的，所以有时候我们会发现明明<code>css</code>和<code>js</code>已经加了版本号，但是html文件里面引用的依然是旧的<code>css</code>和<code>js</code>文件</p>
+<p>  一旦我们使用了全量更新，也就是每次发版本之前会干掉之前的<code>js</code>和<code>css</code>文件，那么<code>index.html</code>会无法加载之前的<code>js</code>，<code>css</code>还有一些其他的静态资源文件，而新的<code>js</code>和<code>css</code>则不会被加载, 那么白屏就诞生了。</p>
+<p>  因为服务器的缓存机制，旧的<code>css</code>和<code>js</code>并不会被立即删除，这种情况下, 需要配合服务器来设置缓存，以<code>nginx</code>为例</p>
+<pre><code>location / &#123;
+    root /home/www/test/dist;
+    index index.html;
+    try_files $uri $uri/ /index.html;
+    add_header Last-Modified $date_gmt;
+    add_header Cache-Control &#39;no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0&#39;;
+    if_modified_since off;
+    expires off;
+    etag off;
+&#125;
+</code></pre>
+<p>  <code>no-cache,no-store</code>可以只设置一个</p>
+<p>  <code>no-cache</code>浏览器会缓存，但刷新页面或者重新打开时会请求服务器，服务器可以响应<code>304</code>，如果文件有改动就会响应<code>200</code></p>
+<p>  <code>no-store</code>浏览器不缓存，刷新页面需要重新下载页</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 欢迎指出任何有错误或不够清晰的表达。可以邮件至 1487968109@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2019 author
+</p>
+<!--<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>-->
+<p class="footer-entry">归途@</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

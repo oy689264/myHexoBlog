@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>事件绑定 | Hexo</title>
+  <meta name="keywords" content=" 前端面试 ">
+  <meta name="description" content="事件绑定 | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Why Blog重新开始之前自己的博客服务器数据库被黑了，要价三千，不然撕票。只能忍痛放弃了，欸。 关于个人博客到目前为止已经写了篇文章， 共字。 本站访问人数：人次 ， 访问量：次">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://www.aiwusihan.top/about.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Why Blog重新开始之前自己的博客服务器数据库被黑了，要价三千，不然撕票。只能忍痛放弃了，欸。 关于个人博客到目前为止已经写了篇文章， 共字。 本站访问人数：人次 ， 访问量：次">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-10T09:02:55.772Z">
+<meta property="article:modified_time" content="2022-12-08T06:25:54.431Z">
+<meta property="article:author" content="世思">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatara.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatara.jpg"/>
+</a>
+<div class="author">
+    <span>世思</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="email"
+               href="mailto:1487968109@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1487968109&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(8)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="js">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        js
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="js<--->Web-API">
+                                        
+                                        Web-API
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="js<--->理论知识">
+                                        
+                                        理论知识
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="工具">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        工具
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="工具<--->博客">
+                                        
+                                        博客
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="工具<--->demo">
+                                        
+                                        demo
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_word_count" value="14.2k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="/">暂无</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>兼容性低</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>浏览器原理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>爬虫</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>前端面试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>实验中</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>自动化</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2022/12/10/JavaScript%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="JavaScript变量提升">JavaScript变量提升</span>
+            <span class="post-date" title="2022-12-10 16:40:55">2022/12/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/10/JS%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1Event/"
+           data-tag="爬虫,自动化"
+           data-author="" >
+            <span class="post-title" title="JS中的事件对象Event">JS中的事件对象Event</span>
+            <span class="post-date" title="2022-12-10 15:29:37">2022/12/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2022/12/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86/"
+           data-tag="前端面试,浏览器原理"
+           data-author="" >
+            <span class="post-title" title="浏览器资源缓存处理">浏览器资源缓存处理</span>
+            <span class="post-date" title="2022-12-09 22:16:16">2022/12/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/08/%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="事件绑定">事件绑定</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/08/%E5%85%83%E7%B4%A0%E8%A7%86%E5%8F%A3%E5%8F%AF%E8%A7%81api/"
+           data-tag="实验中,兼容性低"
+           data-author="" >
+            <span class="post-title" title="元素视口可见api">元素视口可见api</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 demo "
+           href="/2022/12/08/%E7%AE%80%E6%98%93%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简易代码示例">简易代码示例</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2018/03/25/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="事件循环">事件循环</span>
+            <span class="post-date" title="2018-03-25 15:13:47">2018/03/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 博客 "
+           href="/2018/03/23/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人博客搭建">个人博客搭建</span>
+            <span class="post-date" title="2018-03-23 15:13:47">2018/03/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-事件绑定" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">事件绑定</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="js">js</a> > 
+            
+            <a  data-rel="js&lt;---&gt;Web-API">Web-API</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">前端面试</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-12-10 16:38:06'>2022-12-08 22:12</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:1.7k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%BB%91%E5%AE%9A"><span class="toc-text">直接绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%94%A8on%E7%BB%91%E5%AE%9A"><span class="toc-text">用on绑定</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#addEventListener"><span class="toc-text">addEventListener</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%B4%E6%98%8E%EF%BC%9A"><span class="toc-text">说明：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95%EF%BC%9A"><span class="toc-text">使用方法：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E8%AF%B4%E6%98%8E%EF%BC%9A%E6%9C%89%E4%B8%89%E4%B8%AA%E5%8F%82%E6%95%B0"><span class="toc-text">参数说明：有三个参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%82%E6%95%B0%E4%B8%80%E7%9A%84%E4%BA%8B%E4%BB%B6%E7%B1%BB%E5%9E%8B%E5%A4%A7%E8%87%B4%E6%9C%89%E5%A6%82%E4%B8%8B%E9%80%89%E6%8B%A9%EF%BC%88%E8%BD%AC%E8%BD%BD%EF%BC%89"><span class="toc-text">参数一的事件类型大致有如下选择（转载）</span></a></li></ol></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="直接绑定"><a href="#直接绑定" class="headerlink" title="直接绑定"></a>直接绑定</h2><p>&lt;input id&#x3D;”btn1” type&#x3D;”button” οnclick&#x3D;”test();” &#x2F;&gt;</p>
+<p>使用这种方式绑定事件的时候事件对象需要从<code>window</code>中获取，因为是全局对象的原因也可以写成这样</p>
+<pre><code class="html">&lt;button onclick=&quot;demo(event)&quot;&gt;sadfasd&lt;/button&gt;
+</code></pre>
+<h2 id="用on绑定"><a href="#用on绑定" class="headerlink" title="用on绑定"></a>用on绑定</h2><p>document.getElementById(‘btn1’).οnclick&#x3D;function(){}</p>
+<h2 id="addEventListener"><a href="#addEventListener" class="headerlink" title="addEventListener"></a>addEventListener</h2><h3 id="说明："><a href="#说明：" class="headerlink" title="说明："></a>说明：</h3><p>addEventListener() 方法用于向指定元素添加监听事件。且同一元素目标可重复添加，不会覆盖之前相同事件，配合 removeEventListener() 方法来移除事件。</p>
+<h3 id="使用方法："><a href="#使用方法：" class="headerlink" title="使用方法："></a>使用方法：</h3><pre><code>document.getElementById(元素id).addEventListener(&quot;click&quot;, function()&#123;
+    console.log(&quot;目标元素被点击了&quot;);
+&#125;);
+</code></pre>
+<h3 id="参数说明：有三个参数"><a href="#参数说明：有三个参数" class="headerlink" title="参数说明：有三个参数"></a>参数说明：有三个参数</h3><p>参数一、事件名称，字符串，必填。</p>
+<ul>
+<li>事件名称不用带 “on” 前缀，点击事件直接写：”click”，键盘放开事件写：”keyup”</li>
+</ul>
+<p>参数二、执行函数，必填。</p>
+<ul>
+<li>填写需要执行的函数，如：function(){代码…} </li>
+<li>当目标对象事件触发时，会传入一个事件参数，参数名称可自定义，如填写event，不需要也可不填写。 事件对象的类型取决于特定的事件。例如， “click” 事件属于 MouseEvent(鼠标事件) 对象。<br>function(event){console.log(event)}</li>
+</ul>
+<p>参数三、触发类型，布尔型，可空 </p>
+<ul>
+<li>true - 事件在捕获阶段执行</li>
+<li>false - 事件在冒泡阶段执行，默认是false</li>
+</ul>
+<h3 id="参数一的事件类型大致有如下选择（转载）"><a href="#参数一的事件类型大致有如下选择（转载）" class="headerlink" title="参数一的事件类型大致有如下选择（转载）"></a>参数一的事件类型大致有如下选择（转载）</h3><p><strong>鼠标事件</strong><br>click 当用户点击某个对象时调用的事件句柄。<br>contextmenu 在用户点击鼠标右键打开上下文菜单时触发<br>dblclick 当用户双击某个对象时调用的事件句柄。<br>mousedown 鼠标按钮被按下。<br>mouseenter 当鼠标指针移动到元素上时触发。<br>mouseleave 当鼠标指针移出元素时触发<br>mousemove 鼠标被移动。<br>mouseover 鼠标移到某元素之上。<br>mouseout 鼠标从某元素移开。<br>mouseup 鼠标按键被松开。</p>
+<p><strong>键盘事件</strong><br>属性 描述 DOM<br>keydown 某个键盘按键被按下。<br>keypress 某个键盘按键被按下并松开。<br>keyup 某个键盘按键被松开。</p>
+<p><strong>框架&#x2F;对象（Frame&#x2F;Object）事件</strong><br>abort 图像的加载被中断。 ( )<br>beforeunload 该事件在即将离开页面（刷新或关闭）时触发<br>error 在加载文档或图像时发生错误。 ( , 和 )<br>hashchange 该事件在当前 URL 的锚部分发生修改时触发。<br>load 一张页面或一幅图像完成加载。<br>pageshow 该事件在用户访问页面时触发<br>pagehide 该事件在用户离开当前网页跳转到另外一个页面时触发<br>resize 窗口或框架被重新调整大小。<br>scroll 当文档被滚动时发生的事件。<br>unload 用户退出页面。 ( 和 )</p>
+<p><strong>表单事件</strong><br>blur 元素失去焦点时触发<br>change 该事件在表单元素的内容改变时触发( , , , 和 )<br>focus 元素获取焦点时触发<br>focusin 元素即将获取焦点是触发<br>focusout 元素即将失去焦点是触发<br>input 元素获取用户输入是触发<br>reset 表单重置时触发<br>search 用户向搜索域输入文本时触发 (</p>
+<p><strong>剪贴板事件</strong><br>copy 该事件在用户拷贝元素内容时触发<br>cut 该事件在用户剪切元素内容时触发<br>paste 该事件在用户粘贴元素内容时触发</p>
+<p><strong>打印事件</strong><br>afterprint 该事件在页面已经开始打印，或者打印窗口已经关闭时触发<br>beforeprint 该事件在页面即将开始打印时触发</p>
+<p><strong>拖动事件</strong><br>drag 该事件在元素正在拖动时触发<br>dragend 该事件在用户完成元素的拖动时触发<br>dragenter 该事件在拖动的元素进入放置目标时触发<br>dragleave 该事件在拖动元素离开放置目标时触发<br>dragover 该事件在拖动元素在放置目标上时触发<br>dragstart 该事件在用户开始拖动元素时触发<br>drop 该事件在拖动元素放置在目标区域时触发</p>
+<p><strong>多媒体（Media）事件</strong><br>abort 事件在视频&#x2F;音频（audio&#x2F;video）终止加载时触发。<br>canplay 事件在用户可以开始播放视频&#x2F;音频（audio&#x2F;video）时触发。<br>canplaythrough 事件在视频&#x2F;音频（audio&#x2F;video）可以正常播放且无需停顿和缓冲时触发。<br>durationchange 事件在视频&#x2F;音频（audio&#x2F;video）的时长发生变化时触发。<br>emptied The event occurs when the current playlist is empty<br>ended 事件在视频&#x2F;音频（audio&#x2F;video）播放结束时触发。<br>error 事件在视频&#x2F;音频（audio&#x2F;video）数据加载期间发生错误时触发。<br>loadeddata 事件在浏览器加载视频&#x2F;音频（audio&#x2F;video）当前帧时触发触发。<br>loadedmetadata 事件在指定视频&#x2F;音频（audio&#x2F;video）的元数据加载后触发。<br>loadstart 事件在浏览器开始寻找指定视频&#x2F;音频（audio&#x2F;video）触发。<br>pause 事件在视频&#x2F;音频（audio&#x2F;video）暂停时触发。<br>play 事件在视频&#x2F;音频（audio&#x2F;video）开始播放时触发。<br>playing 事件在视频&#x2F;音频（audio&#x2F;video）暂停或者在缓冲后准备重新开始播放时触发。<br>progress 事件在浏览器下载指定的视频&#x2F;音频（audio&#x2F;video）时触发。<br>ratechange 事件在视频&#x2F;音频（audio&#x2F;video）的播放速度发送改变时触发。<br>seeked 事件在用户重新定位视频&#x2F;音频（audio&#x2F;video）的播放位置后触发。<br>seeking 事件在用户开始重新定位视频&#x2F;音频（audio&#x2F;video）时触发。<br>stalled 事件在浏览器获取媒体数据，但媒体数据不可用时触发。<br>suspend 事件在浏览器读取媒体数据中止时触发。<br>timeupdate 事件在当前的播放位置发送改变时触发。<br>volumechange 事件在音量发生改变时触发。<br>waiting 事件在视频由于要播放下一帧而需要缓冲时触发。</p>
+<p><strong>动画事件</strong><br>animationend 该事件在 CSS 动画结束播放时触发<br>animationiteration 该事件在 CSS 动画重复播放时触发<br>animationstart 该事件在 CSS 动画开始播放时触发</p>
+<p><strong>过渡事件</strong><br>transitionend 该事件在 CSS 完成过渡后触发。</p>
+<p><strong>其他事件</strong><br>message 该事件通过或者从对象(WebSocket, Web Worker, Event Source 或者子 frame 或父窗口)接收到消息时触发<br>online 该事件在浏览器开始在线工作时触发。<br>offline 该事件在浏览器开始离线工作时触发。<br>popstate 该事件在窗口的浏览历史（history 对象）发生改变时触发。 event occurs when the window’s history changes<br>show 该事件当</p>
+<p><strong>元素在上下文菜单显示时触发</strong><br>storage 该事件在 Web Storage(HTML 5 Web 存储)更新时触发<br>toggle 该事件在用户打开或关闭 元素时触发<br>wheel 该事件在鼠标滚轮在元素上下滚动时触发</p>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 欢迎指出任何有错误或不够清晰的表达。可以邮件至 1487968109@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2019 author
+</p>
+<!--<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>-->
+<p class="footer-entry">归途@</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

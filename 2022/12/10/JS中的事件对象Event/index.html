@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>JS中的事件对象Event | Hexo</title>
+  <meta name="keywords" content=" 爬虫 , 自动化 ">
+  <meta name="description" content="JS中的事件对象Event | Hexo">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="description" content="Why Blog重新开始之前自己的博客服务器数据库被黑了，要价三千，不然撕票。只能忍痛放弃了，欸。 关于个人博客到目前为止已经写了篇文章， 共字。 本站访问人数：人次 ， 访问量：次">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="https://www.aiwusihan.top/about.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Why Blog重新开始之前自己的博客服务器数据库被黑了，要价三千，不然撕票。只能忍痛放弃了，欸。 关于个人博客到目前为止已经写了篇文章， 共字。 本站访问人数：人次 ， 访问量：次">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2022-12-10T09:02:55.772Z">
+<meta property="article:modified_time" content="2022-12-08T06:25:54.431Z">
+<meta property="article:author" content="世思">
+<meta name="twitter:card" content="summary">
+
+
+<link rel="icon" href="/img/avatara.jpg">
+
+<link href="/css/style.css?v=1.1.0" rel="stylesheet">
+
+<link href="/css/hl_theme/atom-light.css?v=1.1.0" rel="stylesheet">
+
+<link href="//cdn.jsdelivr.net/npm/animate.css@4.1.0/animate.min.css" rel="stylesheet">
+
+<script src="//cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.min.js"></script>
+<script src="/js/titleTip.js?v=1.1.0" ></script>
+
+<script src="//cdn.jsdelivr.net/npm/highlightjs@9.16.2/highlight.pack.min.js"></script>
+<script>
+    hljs.initHighlightingOnLoad();
+</script>
+
+<script src="//cdn.jsdelivr.net/npm/nprogress@0.2.0/nprogress.min.js"></script>
+
+
+
+<script src="//cdn.jsdelivr.net/npm/jquery.cookie@1.4.1/jquery.cookie.min.js" ></script>
+
+<script src="/js/iconfont.js?v=1.1.0" ></script>
+
+<meta name="generator" content="Hexo 6.3.0"></head>
+<div style="display: none">
+  <input class="theme_disqus_on" value="false">
+  <input class="theme_preload_comment" value="">
+  <input class="theme_blog_path" value="">
+  <input id="theme_shortcut" value="true" />
+  <input id="theme_highlight_on" value="true" />
+  <input id="theme_code_copy" value="true" />
+</div>
+
+
+
+<body>
+<aside class="nav">
+    <div class="nav-left">
+        <a href="/"
+   class="avatar_target">
+    <img class="avatar"
+         src="/img/avatara.jpg"/>
+</a>
+<div class="author">
+    <span>世思</span>
+</div>
+
+<div class="icon">
+    
+        
+            <a title="email"
+               href="mailto:1487968109@qq.com"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-email"></use>
+                    </svg>
+                
+            </a>
+        
+    
+        
+            <a title="qq"
+               href="http://wpa.qq.com/msgrd?v=3&uin=1487968109&site=qq&menu=yes"
+               target="_blank">
+                
+                    <svg class="iconfont-svg" aria-hidden="true">
+                        <use xlink:href="#icon-qq"></use>
+                    </svg>
+                
+            </a>
+        
+    
+</div>
+
+
+
+
+<ul>
+    <li>
+        <div class="all active" data-rel="全部文章">全部文章
+            
+                <small>(8)</small>
+            
+        </div>
+    </li>
+    
+        
+            
+                <li>
+                    <div data-rel="js">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        js
+                        <small>(6)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="js<--->Web-API">
+                                        
+                                        Web-API
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="js<--->理论知识">
+                                        
+                                        理论知识
+                                        
+                                            <small>(3
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+        
+            
+                <li>
+                    <div data-rel="工具">
+                        <i class="fold iconfont icon-right"></i>
+                        
+                        工具
+                        <small>(2)</small>
+                        
+                    </div>
+                    
+                        <ul class="sub hide">
+                            
+                                <li>
+                                    <div data-rel="工具<--->博客">
+                                        
+                                        博客
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                                <li>
+                                    <div data-rel="工具<--->demo">
+                                        
+                                        demo
+                                        
+                                            <small>(1
+                                                )</small>
+                                        
+                                    </div>
+                                    
+                                </li>
+                            
+                        </ul>
+                    
+                </li>
+            
+        
+    
+        
+            
+        
+    
+        
+            
+        
+    
+</ul>
+<div class="left-bottom">
+    <div class="menus">
+        
+            
+            
+            
+    </div>
+    <div>
+        
+            <a class="about  hasFriend  site_url"
+               
+               href="/about">关于</a>
+        
+        <a style="width: 50%"
+                
+                                           class="friends">友链</a>
+        
+    </div>
+</div>
+<input type="hidden" id="yelog_site_posts_number" value="8">
+<input type="hidden" id="yelog_site_word_count" value="14.2k">
+<div style="display: none">
+    <span id="busuanzi_value_site_uv"></span>
+    <span id="busuanzi_value_site_pv"></span>
+</div>
+
+    </div>
+    <div class="nav-right">
+        <div class="friends-area">
+    <div class="friends-title">
+        友情链接
+        <i class="iconfont icon-left"></i>
+    </div>
+    <div class="friends-content">
+        <ul>
+            
+            <li><a target="_blank" href="/">暂无</a></li>
+            
+        </ul>
+    </div>
+</div>
+        <div class="title-list">
+    <div class="right-top">
+        <div id="default-panel">
+            <i class="iconfont icon-search" data-title="搜索 快捷键 i"></i>
+            <div class="right-title">全部文章</div>
+            <i class="iconfont icon-file-tree" data-title="切换到大纲视图 快捷键 w"></i>
+        </div>
+        <div id="search-panel">
+            <i class="iconfont icon-left" data-title="返回"></i>
+            <input id="local-search-input" autocomplete="off"/>
+            <label class="border-line" for="input"></label>
+            <i class="iconfont icon-case-sensitive" data-title="大小写敏感"></i>
+            <i class="iconfont icon-tag" data-title="标签"></i>
+        </div>
+        <div id="outline-panel" style="display: none">
+            <div class="right-title">大纲</div>
+            <i class="iconfont icon-list" data-title="切换到文章列表"></i>
+        </div>
+    </div>
+
+    <div class="tags-list">
+    <input id="tag-search" />
+    <div class="tag-wrapper">
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>兼容性低</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>浏览器原理</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>爬虫</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>前端面试</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>实验中</a>
+            </li>
+        
+            <li class="article-tag-list-item">
+                <i class="iconfont icon-tag"></i><a>自动化</a>
+            </li>
+        
+    </div>
+
+</div>
+
+    
+    <nav id="title-list-nav">
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2022/12/10/JavaScript%E5%8F%98%E9%87%8F%E6%8F%90%E5%8D%87/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="JavaScript变量提升">JavaScript变量提升</span>
+            <span class="post-date" title="2022-12-10 16:40:55">2022/12/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/10/JS%E4%B8%AD%E7%9A%84%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1Event/"
+           data-tag="爬虫,自动化"
+           data-author="" >
+            <span class="post-title" title="JS中的事件对象Event">JS中的事件对象Event</span>
+            <span class="post-date" title="2022-12-10 15:29:37">2022/12/10</span>
+        </a>
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2022/12/09/%E6%B5%8F%E8%A7%88%E5%99%A8%E8%B5%84%E6%BA%90%E7%BC%93%E5%AD%98%E5%A4%84%E7%90%86/"
+           data-tag="前端面试,浏览器原理"
+           data-author="" >
+            <span class="post-title" title="浏览器资源缓存处理">浏览器资源缓存处理</span>
+            <span class="post-date" title="2022-12-09 22:16:16">2022/12/09</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/08/%E4%BA%8B%E4%BB%B6%E7%BB%91%E5%AE%9A/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="事件绑定">事件绑定</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 js Web-API "
+           href="/2022/12/08/%E5%85%83%E7%B4%A0%E8%A7%86%E5%8F%A3%E5%8F%AF%E8%A7%81api/"
+           data-tag="实验中,兼容性低"
+           data-author="" >
+            <span class="post-title" title="元素视口可见api">元素视口可见api</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 demo "
+           href="/2022/12/08/%E7%AE%80%E6%98%93%E4%BB%A3%E7%A0%81%E7%A4%BA%E4%BE%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="简易代码示例">简易代码示例</span>
+            <span class="post-date" title="2022-12-08 22:12:09">2022/12/08</span>
+        </a>
+        
+        
+        <a  class="全部文章 js 理论知识 "
+           href="/2018/03/25/%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/"
+           data-tag="前端面试"
+           data-author="" >
+            <span class="post-title" title="事件循环">事件循环</span>
+            <span class="post-date" title="2018-03-25 15:13:47">2018/03/25</span>
+        </a>
+        
+        
+        <a  class="全部文章 工具 博客 "
+           href="/2018/03/23/Hexo%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E7%AB%99%E8%AF%A6%E7%BB%86%E6%B5%81%E7%A8%8B/"
+           data-tag=""
+           data-author="" >
+            <span class="post-title" title="个人博客搭建">个人博客搭建</span>
+            <span class="post-date" title="2018-03-23 15:13:47">2018/03/23</span>
+        </a>
+        
+        <div id="no-item-tips">
+
+        </div>
+    </nav>
+    <div id="outline-list">
+    </div>
+</div>
+
+    </div>
+    <div class="hide-list">
+        <div class="semicircle" data-title="切换全屏 快捷键 s">
+            <div class="brackets first"><</div>
+            <div class="brackets">&gt;</div>
+        </div>
+    </div>
+</aside>
+<div id="post">
+    <div class="pjax">
+        <article id="post-JS中的事件对象Event" class="article article-type-post" itemscope itemprop="blogPost">
+    
+        <h1 class="article-title">JS中的事件对象Event</h1>
+    
+    <div class="article-meta">
+        
+        
+        
+        <span class="book">
+            <i class="iconfont icon-category"></i>
+            
+            
+            <a  data-rel="js">js</a> > 
+            
+            <a  data-rel="js&lt;---&gt;Web-API">Web-API</a>
+            
+        </span>
+        
+        
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color3">爬虫</a>
+            
+            <a class="color4">自动化</a>
+            
+        </span>
+        
+    </div>
+    <div class="article-meta">
+        
+            发布时间 : <time class="date" title='最后更新: 2022-12-10 16:24:29'>2022-12-10 15:29</time>
+        
+    </div>
+    <div class="article-meta">
+        
+        <span>字数:3.1k</span>
+        
+        
+        <span id="busuanzi_container_page_pv">
+            阅读 :<span id="busuanzi_value_page_pv">
+                <span class="count-comment">
+                    <span class="spinner">
+                      <div class="cube1"></div>
+                      <div class="cube2"></div>
+                    </span>
+                </span>
+            </span>
+        </span>
+        
+        
+    </div>
+    
+    <div class="toc-ref">
+    
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E4%BA%8B%E4%BB%B6%E5%AF%B9%E8%B1%A1-Event"><span class="toc-text">一、什么是事件对象 Event</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%8C%E3%80%81Event-%E5%B1%9E%E6%80%A7"><span class="toc-text">二、Event 属性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%89%E3%80%81Event-%E6%96%B9%E6%B3%95"><span class="toc-text">三、Event 方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E6%A8%A1%E6%8B%9F%E4%BA%8B%E4%BB%B6"><span class="toc-text">四、模拟事件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#4-1-%E6%A8%A1%E6%8B%9F%E9%BC%A0%E6%A0%87%E4%BA%8B%E4%BB%B6"><span class="toc-text">4.1 模拟鼠标事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-2-%E6%A8%A1%E6%8B%9F%E9%94%AE%E7%9B%98%E4%BA%8B%E4%BB%B6"><span class="toc-text">4.2 模拟键盘事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-3-%E6%A8%A1%E6%8B%9F%E5%85%B6%E4%BB%96%E4%BA%8B%E4%BB%B6"><span class="toc-text">4.3 模拟其他事件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-4-%E8%87%AA%E5%AE%9A%E4%B9%89-DOM-%E4%BA%8B%E4%BB%B6"><span class="toc-text">4.4 自定义 DOM 事件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BA%94%E3%80%81Event%E7%9A%84%E5%85%BC%E5%AE%B9%E6%80%A7%E5%A4%84%E7%90%86"><span class="toc-text">五、Event的兼容性处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E6%A8%A1%E6%8B%9F%E4%BA%8B%E4%BB%B6%E5%BA%94%E7%94%A8"><span class="toc-text">六、模拟事件应用</span></a></li></ol>
+    
+<style>
+    .left-col .switch-btn,
+    .left-col .switch-area {
+        display: none;
+    }
+    .toc-level-3 i,
+    .toc-level-3 ol {
+        display: none !important;
+    }
+</style>
+</div>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="一、什么是事件对象-Event"><a href="#一、什么是事件对象-Event" class="headerlink" title="一、什么是事件对象 Event"></a><strong>一、什么是事件对象 Event</strong></h2><p>  每一个事件触发时，都会产生一个与之对应的事件对象 <code>event</code> ，其中包含了触发事件的元素、键盘鼠标的状态、位置等等内容。</p>
+<p>  每当用户触发一个事件后，JS 就会自动生成一个 <code>event</code> 对象，根据触发事件的不同，这个对象包含的内容也不同，比如通过鼠标触发点击事件，会产生一个 <code>MouseEvent</code> 对象，其中包含了鼠标的位置等内容；通过键盘触发事件，会产生一个 <code>KeyboardEvent</code> 对象其中包含按键相关的信息。</p>
+<ul>
+<li><code>event</code> 对象代表事件的状态，比如触发事件的元素、键盘按键的状态、鼠标的位置、鼠标按键的状态等等；</li>
+<li><code>event</code> 对象是一个隐式参数，并且只在事件发生的过程中才有效；</li>
+<li><code>event</code> 对象根据触发方式的不同会具有不同的属性，也就是说某些属性只对特定事件有效，但所有内容都是继承自 <code>Event</code> 对象；</li>
+<li><code>event</code> 对象在 <code>IE</code> 与 <code>Chrome</code> 等浏览器表现不尽相同，例如说 <code>event.target</code> 表示触发事件的元素，在 <code>IE</code> 中需要使用 <code>event.srcElement</code> 获取；</li>
+</ul>
+<p><code>Event</code>对象本身就是一个构造函数，可以用来生成新的实例。</p>
+<pre><code class="js">event = new Event(type, options);
+</code></pre>
+<p><code>Event</code>构造函数接受两个参数。第一个参数<code>type</code>是字符串，表示事件的名称；第二个参数<code>options</code>是一个对象，表示事件对象的配置。该对象主要有下面两个属性。</p>
+<ul>
+<li><code>bubbles</code>：布尔值，可选，默认为false，表示事件对象是否冒泡。</li>
+<li><code>cancelable</code>：布尔值，可选，默认为false，表示事件是否可以被取消，即能否用<code>Event.preventDefault()</code>取消这个事件。一旦事件被取消，就好像从来没有发生过，不会触发浏览器对该事件的默认行为。</li>
+</ul>
+<pre><code class="js">var ev = new Event(
+  &#39;look&#39;,
+  &#123;
+    &#39;bubbles&#39;: true,
+    &#39;cancelable&#39;: false
+  &#125;
+);
+document.dispatchEvent(ev);
+</code></pre>
+<p>上面代码新建一个<code>look</code>事件实例，然后使用<code>dispatchEvent</code>方法触发该事件。</p>
+<p>注意，如果不是显式指定<code>bubbles</code>属性为<code>true</code>，生成的事件就只能在“捕获阶段”触发监听函数。</p>
+<pre><code class="js">// HTML 代码为
+// Hello
+var div = document.querySelector(&#39;div&#39;);
+var p = document.querySelector(&#39;p&#39;);
+
+function callback(event) &#123;
+  var tag = event.currentTarget.tagName;
+  console.log(&#39;Tag: &#39;   tag); // 没有任何输出
+&#125;
+
+div.addEventListener(&#39;click&#39;, callback, false);
+
+var click = new Event(&#39;click&#39;);
+p.dispatchEvent(click);
+</code></pre>
+<p>上面代码中，<code>p</code>元素发出一个<code>click</code>事件，该事件默认不会冒泡。<code>div.addEventListener</code>方法指定在冒泡阶段监听，因此监听函数不会触发。如果写成<code>div.addEventListener(&#39;click&#39;, callback, true)</code>，那么在“捕获阶段”可以监听到这个事件。</p>
+<p>另一方面，如果这个事件在div元素上触发。</p>
+<pre><code class="js">div.dispatchEvent(click);
+</code></pre>
+<p>那么，不管<code>div</code>元素是在冒泡阶段监听，还是在捕获阶段监听，都会触发监听函数。因为这时<code>div</code>元素是事件的目标，不存在是否冒泡的问题，<code>div</code>元素总是会接收到事件，因此导致监听函数生效。</p>
+<h2 id="二、Event-属性"><a href="#二、Event-属性" class="headerlink" title="二、Event 属性"></a><strong>二、Event 属性</strong></h2><p>  我们在前面提到，根据触发方式的不同 <code>event</code> 对象会具有不同的属性，我们可以将其大体分为四部分：</p>
+<p><em><strong>通用属性</strong></em> (无论是通过键盘还是鼠标触发都拥有的属性)</p>
+<ul>
+<li><p><code>bubbles</code> 事件是否会冒泡，布尔值；</p>
+</li>
+<li><p><code>cancelable</code> 事件是否具有默认行为，布尔值；<br>  默认行为指的是浏览器中规定的一些行为，比如 <code>标签点击后会跳转链接，</code></p>
+<p>标签内按回车会自动提交等等。</p>
+</li>
+<li><p><code>currentTarget</code> 事件处理程序当前正在处理事件的那个元素，返回一个 <code>Element</code> 对象；</p>
+</li>
+<li><p><code>defaultPrevented</code> 事件是否取消了默认行为，布尔值；</p>
+</li>
+<li><p><code>detail</code> 返回一个包含事件详细信息的数字<br>  在 <code>click</code> 、 <code>mousedown</code> 和 <code>mouseup</code> 事件中，该数字表示当前的点击次数， <code>dblclick</code> 事件中，该数字一直为 2 。在键盘事件和鼠标经过事件中，该数字一直为0。</p>
+</li>
+<li><p><code>eventPhase</code> 返回一个代表事件处理程序发生时所在阶段的数字；<br>  0表示当前阶段未发生其他事件；1表示当前事件在捕获阶段发生；2表示当前事件处于目标阶段；3表示当前事件处于冒泡阶段；</p>
+</li>
+<li><p><code>isTrusted</code> 表示该事件是由用户行为触发的，还是由 JS 代码触发的，布尔值；<br>  当事件是由用户行为（点击等）触发时，值为 <code>true</code> ，当事件是通过 <code>EventTarget.dispatchEvent()</code> 派发的时候，这个属性的值为 <code>false</code> 。</p>
+</li>
+</ul>
+<pre><code>    列表1
+    列表2
+    列表3
+    列表4
+</code></pre>
+<p>  点击列表1后，控制台打印如下结果：<br><img src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" alt="深入解析JS中的事件对象Event,控制台打印结果,第3张"></p>
+<ul>
+<li><code>target</code> 返回触发该事件的目标节点，返回一个 <code>Element</code> 对象；<br>  <code>target</code> 并不一定与 <code>this</code> 指向相同，<code>this</code> 指向的是当前发生事件的元素，而 <code>target</code> 指向的是触发该事件的元素，可以将上方代码中的 <code>console.log(event.eventPhase);</code> 换成 <code>console.log(event.target);</code> 来具体体验一下两者的不同。<br>    在 <code>IE</code> 浏览器中应使用 <code>srcElement</code> 来代替 <code>target</code>。</li>
+<li><code>type</code> 返回触发的事件名称，例 <code>click</code> ，<code>keydown</code>等；</li>
+</ul>
+<p><em><strong>鼠标属性</strong></em></p>
+<ul>
+<li><code>button</code> 当事件被触发时，哪个鼠标按钮被点击；</li>
+<li><code>clientX</code> 当事件被触发时，鼠标指针的 x 轴坐标；</li>
+<li><code>clientY</code> 当事件被触发时，鼠标指针的 y 轴坐标；</li>
+<li><code>screenX</code> 当事件被触发时，鼠标指针的 x 轴坐标；</li>
+<li><code>screenY</code> 当事件被触发时，鼠标指针的 y 轴坐标；</li>
+</ul>
+<p><em><strong>键盘属性</strong></em></p>
+<ul>
+<li><code>altKey</code> 当事件被触发时，“Alt” 是否被按下；</li>
+<li><code>ctrlKey</code> 当事件被触发时，“Ctrl” 是否被按下；</li>
+<li><code>metaKey</code> 当事件被触发时，“meta” 是否被按下；</li>
+<li><code>shiftKey</code> 当事件被触发时，“Shift” 是否被按下；</li>
+<li><code>Location</code> 返回按键在设备上的位置；</li>
+<li><code>charCode</code> 当事件被触发时，触发键值的字母代码；</li>
+<li><code>key</code> 按下按键时返回按键的标识符；</li>
+<li><code>keyCode</code> 返回 <code>keypress</code> 事件触发的键的值的字符代码，或者 <code>keydown</code> 或 <code>keyup</code> 事件的键的代码；</li>
+<li><code>which</code> 返回 <code>keypress</code> 事件触发的键的值的字符代码，或者 <code>keydown</code> 或 <code>keyup</code> 事件的键的代码；</li>
+<li><code>relatedTarget</code> 返回与事件的目标节点相关的节点。</li>
+</ul>
+<p><em><strong>IE属性</strong></em></p>
+<ul>
+<li><code>cancelBubble</code> 如果想阻止事件冒泡，必须把该属性设为 <code>true</code>；</li>
+<li><code>fromElement</code> 对于 <code>mouseover</code> 和 <code>mouseout</code> 事件，<code>fromElement</code> 引用移出鼠标的元素；</li>
+<li><code>returnValue</code> 等同于 <code>defaultPrevented</code>；</li>
+<li><code>srcElement</code> 等同于 <code>target</code>；</li>
+<li><code>toElement</code> 对于 <code>mouseover</code> 和 <code>mouseout</code> 事件，该属性引用移入鼠标的元素；</li>
+<li><code>x</code> 事件发生的位置的 x 坐标；</li>
+<li><code>y</code> 事件发生的位置的 y 坐标；</li>
+</ul>
+<h2 id="三、Event-方法"><a href="#三、Event-方法" class="headerlink" title="三、Event 方法"></a><strong>三、Event 方法</strong></h2><ul>
+<li><code>initEvent()</code> 初始化新创建的 <code>Event</code> 对象的属性；</li>
+<li><code>preventDefault()</code> 阻止触发事件元素的默认行为；</li>
+<li><code>stopPropagation()</code> 阻止事件冒泡；</li>
+</ul>
+<p>  如果想要阻止事件元素的默认行为，例如点击 &#96;&#96;&#96;&#96;标签时执行点击事件，不要跳转链接，需要在事件处理程序中调用 <code>preventDefault</code> 方法：</p>
+<pre><code>百度一下，你就知道
+</code></pre>
+<p>  如果想要阻止事件冒泡，例如点击子元素标签时执行子元素的点击事件，而不想要执行父级元素的事件处理程序，则需要调用 <code>stopPropagation</code> 方法：</p>
+<pre><code>    不要触发 ul 的点击事件处理程序
+</code></pre>
+<p><em><strong>其他相关方法</strong></em></p>
+<ul>
+<li><code>addEventListener()</code> 给目标元素注册监听事件；</li>
+<li><code>createEvent()</code> 创建一个 <code>Event</code> 对象；</li>
+<li><code>dispatchEvent()</code> 将事件发送到目标元素的监听器上；</li>
+<li><code>handleEvent()</code> 把任意对象注册为事件处理程序；</li>
+<li><code>initMouseEvent()</code> 初始化鼠标事件对象的值；</li>
+<li><code>initKeyboardEvent()</code> 初始化键盘事件对象的值；</li>
+<li><code>initMutationEvent()</code> 初始变动事件和 <code>HTML</code> 事件对象的值；</li>
+<li><code>initCustomEvent()</code> 初始自定义事件对象的值；</li>
+<li><code>removeEventListener()</code> 删除目标元素上的某个监听事件；</li>
+</ul>
+<hr>
+<p>另外关于 <code>createEvent</code> 方法，根据传入参数的不同，会返回不同的 <code>event</code> 对象：</p>
+<ul>
+<li><code>MouseEvents</code> 创建鼠标事件对象，返回的对象中包含 <code>initMouseEvent()</code> 方法；</li>
+<li><code>KeyboardEvent</code> 创建键盘事件对象，返回的对象中包含 <code>initKeyEvent()</code> 方法；</li>
+<li><code>KeyEvents</code> 在 <code>firefox</code> 中创建键盘事件对象需要传入该参数；</li>
+<li><code>MutationEvents</code> 模拟变动事件和 HTML 事件的事件对象，返回的对象中包含 <code>initMutationEvent</code> 方法；</li>
+<li><code>CustomEvent</code> 创建自定义事件对象，返回的对象中包含 <code>initCustomEvent()</code> 方法；</li>
+</ul>
+<h2 id="四、模拟事件"><a href="#四、模拟事件" class="headerlink" title="四、模拟事件"></a><strong>四、模拟事件</strong></h2><h3 id="4-1-模拟鼠标事件"><a href="#4-1-模拟鼠标事件" class="headerlink" title="4.1 模拟鼠标事件"></a><strong>4.1 模拟鼠标事件</strong></h3><p>  我们可以通过 <code>createEvent()</code> 方法可以创建一个新的 <code>event</code> 对象，借助 <code>initMouseEvent()</code> 方法来对这个鼠标事件对象的值进行初始化，该方法接受十五个参数，分别与鼠标事件中的各个属性一一对应，按照 <code>type</code>、<code>bubbles</code>、<code>cancelable</code>、<code>view</code>、<code>detail</code>、<code>screenX</code>、<code>screenY</code>、<code>clientX</code>、<code>clientY</code>、<code>ctrlKey</code>、<code>altKey</code>、<code>shiftKey</code>、、<code>metaKey</code>、<code>button</code>、<code>relatedTarget</code> 的顺序传入即可：</p>
+<pre><code class="js">var oBtn = document.querySelector(&quot;button&quot;);
+// 为 button 绑定事件处理程序
+oBtn.addEventListener(&quot;click&quot;, function () &#123;
+    console.log(event);
+&#125;)
+
+var event = document.createEvent(&quot;MouseEvents&quot;);
+// 通过 initMouseEvent() 方法初始化鼠标事件的 event 对象
+event.initMouseEvent(&quot;click&quot;, true, true, document.defaultView, 0, 0, 0, 0, 0, false, false, false, false, 0, null);
+// 通过 dispatchEvent() 方法来触发 oBtn 上绑定的点击事件，此时浏览器打印的 event 对象为自定义的 event
+oBtn.dispatchEvent(event);
+</code></pre>
+<p>  初始化事件对象时，最重要的是前四个参数，因为浏览器在触发事件时，这四个参数是必须的，而剩余的参数只有在事件处理程序中才会被使用，<code>target</code> 会在执行 <code>dispatchEvent</code> 方法时自动赋值；</p>
+<h3 id="4-2-模拟键盘事件"><a href="#4-2-模拟键盘事件" class="headerlink" title="4.2 模拟键盘事件"></a><strong>4.2 模拟键盘事件</strong></h3><p>  同样需要先使用 <code>createEvent()</code> 方法可以创建一个新的 <code>event</code> 对象，但需要使用 <code>initKeyEvent</code> 来对键盘事件对象的值进行初始化，该方法接收八个参数，分别于键盘事件对象中的各个属性一一对应，按照 <code>type</code>、<code>bubbles</code>、<code>cancelable</code>、<code>view</code>、<code>key</code>、<code>location</code>、<code>modifiers</code>、<code>repeat</code>的顺序传入即可。但在 <code>firefox</code> 中，需要按照 <code>type</code>、<code>bubbles</code>、<code>cancelable</code>、<code>view</code>、<code>ctrlKey</code>、<code>altKey</code>、<code>shiftKey</code> <code>metaKey</code> <code>keyCode</code> <code>charCode</code> &#96; 的顺序传入十个参数</p>
+<pre><code class="js">document.onkeydown = function () &#123;
+    console.log(event);
+&#125;
+
+var event = document.createEvent(&quot;KeyboardEvent&quot;);
+event.initKeyboardEvent(&quot;keydown&quot;, false, false, document.defaultView, &quot;a&quot;, 0, &quot;Shift&quot;, 0);
+document.dispatchEvent(event);
+</code></pre>
+<h3 id="4-3-模拟其他事件"><a href="#4-3-模拟其他事件" class="headerlink" title="4.3 模拟其他事件"></a><strong>4.3 模拟其他事件</strong></h3><p>  如果想要模拟其他事件，诸如 <code>submit</code>、<code>focus</code> 等 <code>HTML</code> 和变动事件，则需要通过 <code>MutationEvents</code> 方法来创建事件，通过 <code>initEvent</code> 方法来进行初始化，按照<code>type</code>、<code>bubbles</code>、<code>cancelable</code>、<code>relatedNode</code>、<code>preValue</code>、<code>newValue</code>、<code>attrName</code>、<code>attrChange</code>的顺序传入参数。</p>
+<pre><code>
+</code></pre>
+<h3 id="4-4-自定义-DOM-事件"><a href="#4-4-自定义-DOM-事件" class="headerlink" title="4.4 自定义 DOM 事件"></a><strong>4.4 自定义 DOM 事件</strong></h3><p>  自定义事件不是由 DOM 原生触发的，它的目的是让开发人员创建自己的事件。要创建新的自定义事件，可以调用 <code>createEvent(&quot;CustomEvent&quot;)</code>，返回的对象有一个名为 <code>initCustomEvent()</code> 的方法，接收 <code>type</code>、<code>bubbles</code>、<code>cancelable</code>、<code>detail</code> 四个参数。</p>
+<pre><code class="js">var oInput = document.querySelector(&quot;input&quot;);
+
+oInput.addEventListener(&quot;myEvent&quot;, function () &#123;
+    console.log(event);
+&#125;)
+
+var event = document.createEvent(&quot;CustomEvent&quot;);
+event.initCustomEvent(&quot;myEvent&quot;, true, false, &quot;自定义事件myEvent&quot;);
+oInput.dispatchEvent(event);
+</code></pre>
+<p>  上方代码创建了一个自定义事件，事件名为 <code>myEvent</code> ， 该事件可以向上冒泡，不可以执行在浏览器中的默认行为， <code>detail</code> 属性的值为 <code>自定义事件myEvent</code>，可以在绑定该事件的元素或者元素的父级元素上绑定事件处理程序来查看 <code>event</code> 对象。</p>
+<h2 id="五、Event的兼容性处理"><a href="#五、Event的兼容性处理" class="headerlink" title="五、Event的兼容性处理"></a><strong>五、Event的兼容性处理</strong></h2><p>  主要考虑到 <code>IE</code> 浏览器与 <code>Chrome</code> 等浏览器事件对象的区别，针对下面四个属性，需要进行特殊处理：</p>
+<ul>
+<li>获得 <code>event</code> 对象<br><code>var event = event || window.event;</code></li>
+<li>获得 <code>target</code> 对象<br><code>var target = event.target || event.srcElement;</code></li>
+<li>阻止浏览器默认行为<br><code>event.preventDefault ? event.preventDefault() : (event.returnValue = false);</code></li>
+<li>阻止事件冒泡<br><code>event.stopPropagation ? event.stopPropagation() : (event.cancelBubble = true);</code></li>
+</ul>
+<h2 id="六、模拟事件应用"><a href="#六、模拟事件应用" class="headerlink" title="六、模拟事件应用"></a>六、模拟事件应用</h2><pre><code class="js">// 创建 event 对象
+let event = document.createEvent(&quot;MouseEvents&quot;); 
+// 初始化 event 对象
+event.initMouseEvent(&quot;click&quot;, true, true, document.defaultView, 
+ 0, 0, 0, 0, 0, false, false, false, false, 0, null); 
+</code></pre>
+<p>这种实例化的方式已经被弃用，可以使用新版本api</p>
+<p>拖动事件模拟例子</p>
+<pre><code class="js">// 获取标签
+var oBtn = document.getElementsByClassName(&#39;verify-btn&#39;)[0]
+
+function simulateClick() &#123;
+    // 按下鼠标
+    var evt = new MouseEvent(&quot;mousedown&quot;, &#123;
+        bubbles: true,
+        cancelable: true,
+    &#125;);
+    oBtn.dispatchEvent(evt);
+    // 移动鼠标
+    evt = new MouseEvent(&quot;mousemove&quot;, &#123;
+        bubbles: true,
+        cancelable: true,
+        clientX: 1800
+    &#125;);
+    // 松开鼠标
+    oBtn.dispatchEvent(evt);
+    evt = new MouseEvent(&quot;mouseup&quot;, &#123;
+        bubbles: true,
+        cancelable: true,
+    &#125;);
+    oBtn.dispatchEvent(evt);
+&#125;
+
+simulateClick()
+</code></pre>
+
+      
+       <hr><span style="font-style: italic;color: gray;"> 欢迎指出任何有错误或不够清晰的表达。可以邮件至 1487968109@qq.com </span>
+    </div>
+</article>
+
+
+<p>
+    <a  class="dashang" onclick="dashangToggle()">赏</a>
+</p>
+
+
+
+
+
+
+    
+
+
+
+
+    </div>
+    <div class="copyright">
+        <p class="footer-entry">
+    ©2019 author
+</p>
+<!--<p class="footer-entry">Built with <a href="https://hexo.io/" target="_blank">Hexo</a> and <a href="https://github.com/yelog/hexo-theme-3-hexo" target="_blank">3-hexo</a> theme</p>-->
+<p class="footer-entry">归途@</p>
+
+    </div>
+    <div class="full-toc">
+        <button class="full" data-title="切换全屏 快捷键 s"><span class="min "></span></button>
+<a class="" id="rocket" ></a>
+
+    </div>
+</div>
+
+<div class="hide_box" onclick="dashangToggle()"></div>
+<div class="shang_box">
+    <a class="shang_close"  onclick="dashangToggle()">×</a>
+    <div class="shang_tit">
+        <p>喜欢就点赞,疼爱就打赏</p>
+    </div>
+    <div class="shang_payimg">
+        <div class="pay_img">
+            <img src="/img/alipay.jpg" class="alipay" title="扫码支持">
+            <img src="/img/weixin.jpg" class="weixin" title="扫码支持">
+        </div>
+    </div>
+    <div class="shang_payselect">
+        <span><label><input type="radio" name="pay" checked value="alipay">支付宝</label></span><span><label><input type="radio" name="pay" value="weixin">微信</label></span>
+    </div>
+</div>
+
+
+</body>
+<script src="/js/jquery.pjax.js?v=1.1.0" ></script>
+
+<script src="/js/script.js?v=1.1.0" ></script>
+<script>
+    var img_resize = 'default';
+    function initArticle() {
+        /*渲染对应的表格样式*/
+        
+            $("#post .pjax table").addClass("green_title");
+        
+
+        /*渲染打赏样式*/
+        
+        $("input[name=pay]").on("click", function () {
+            if($("input[name=pay]:checked").val()=="weixin"){
+                $(".shang_box .shang_payimg .pay_img").addClass("weixin_img");
+            } else {
+                $(".shang_box .shang_payimg .pay_img").removeClass("weixin_img");
+            }
+        })
+        
+
+        /*高亮代码块行号*/
+        
+
+        /*访问数量*/
+        
+        $.getScript("//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js");
+        
+
+        /*代码高亮，行号对齐*/
+        $('.pre-numbering').css('line-height',$('.has-numbering').css('line-height'));
+
+        
+        
+    }
+
+    /*打赏页面隐藏与展示*/
+    
+    function dashangToggle() {
+        $(".shang_box").fadeToggle();
+        $(".hide_box").fadeToggle();
+    }
+    
+
+</script>
+
+<!--加入行号的高亮代码块样式-->
+
+<!--自定义样式设置-->
+<style>
+    
+    
+    .nav {
+        width: 542px;
+    }
+    .nav.fullscreen {
+        margin-left: -542px;
+    }
+    .nav-left {
+        width: 120px;
+    }
+    
+    
+    @media screen and (max-width: 1468px) {
+        .nav {
+            width: 492px;
+        }
+        .nav.fullscreen {
+            margin-left: -492px;
+        }
+        .nav-left {
+            width: 100px;
+        }
+    }
+    
+    
+    @media screen and (max-width: 1024px) {
+        .nav {
+            width: 492px;
+            margin-left: -492px
+        }
+        .nav.fullscreen {
+            margin-left: 0;
+        }
+    }
+    
+    @media screen and (max-width: 426px) {
+        .nav {
+            width: 100%;
+        }
+        .nav-left {
+            width: 100%;
+        }
+    }
+    
+    
+    .nav-right .title-list nav a .post-title, .nav-right .title-list #local-search-result a .post-title {
+        color: #383636;
+    }
+    
+    
+    .nav-right .title-list nav a .post-date, .nav-right .title-list #local-search-result a .post-date {
+        color: #5e5e5f;
+    }
+    
+    
+    .nav-right nav a.hover, #local-search-result a.hover{
+        background-color: #e2e0e0;
+    }
+    
+    
+
+    /*列表样式*/
+    
+
+    /* 背景图样式 */
+    
+    
+
+
+    /*引用块样式*/
+    
+
+    /*文章列表背景图*/
+    
+    .nav-right:before {
+        content: ' ';
+        display: block;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        opacity: 0.3;
+        background: url("https://i.loli.net/2019/07/22/5d3521411f3f169375.png");
+        background-repeat: no-repeat;
+        background-position: 50% 0;
+        -ms-background-size: cover;
+        -o-background-size: cover;
+        -moz-background-size: cover;
+        -webkit-background-size: cover;
+        background-size: cover;
+    }
+    
+
+    
+</style>
+
+
+
+
+
+
+
+</html>

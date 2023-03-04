@@ -230,7 +230,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="8">
-<input type="hidden" id="yelog_site_word_count" value="14.2k">
+<input type="hidden" id="yelog_site_word_count" value="14.7k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -418,12 +418,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2022-12-10 16:37:21'>2022-12-08 22:12</time>
+            发布时间 : <time class="date" title='最后更新: 2022-12-11 10:54:26'>2022-12-08 22:12</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:267</span>
+        <span>字数:775</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -442,7 +442,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%8C%E9%9D%A2%E5%BD%95%E5%88%B6"><span class="toc-text">桌面录制</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%8C%E9%9D%A2%E5%BD%95%E5%88%B6"><span class="toc-text">桌面录制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#vue%E6%8C%87%E4%BB%A4%E5%BF%AB%E9%80%9F%E5%AE%9E%E7%8E%B0%E6%8B%96%E6%8B%BD%E6%95%88%E6%9E%9C"><span class="toc-text">vue指令快速实现拖拽效果</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -511,6 +511,79 @@
 &lt;/script&gt;
 &lt;/body&gt;
 &lt;/html&gt;
+</code></pre>
+<h1 id="vue指令快速实现拖拽效果"><a href="#vue指令快速实现拖拽效果" class="headerlink" title="vue指令快速实现拖拽效果"></a>vue指令快速实现拖拽效果</h1><pre><code class="js">app.directive(&#39;drag&#39;, (el) =&gt; &#123;
+    const oDiv = el // 当前元素
+    const minTop = oDiv.getAttribute(&#39;drag-min-top&#39;)
+    const ifMoveSizeArea = 20
+    oDiv.onmousedown = e =&gt; &#123;
+        let target = oDiv
+        while (window.getComputedStyle(target).position !== &#39;absolute&#39; &amp;&amp; target !== document.body) &#123;
+            target = target.parentElement
+        &#125;
+
+        document.onselectstart = () =&gt; &#123;
+            return false
+        &#125;
+        if (!target.getAttribute(&#39;init_x&#39;)) &#123;
+            target.setAttribute(&#39;init_x&#39;, target.offsetLeft)
+            target.setAttribute(&#39;init_y&#39;, target.offsetTop)
+        &#125;
+
+        const initX = parseInt(target.getAttribute(&#39;init_x&#39;))
+        const initY = parseInt(target.getAttribute(&#39;init_y&#39;))
+
+        // 鼠标按下，计算当前元素距离可视区的距离
+        const disX = e.clientX - target.offsetLeft
+        const disY = e.clientY - target.offsetTop
+        document.onmousemove = e =&gt; &#123;
+            // 通过事件委托，计算移动的距离
+            // 因为浏览器里并不能直接取到并且使用clientX、clientY,所以使用事件委托在内部做完赋值
+            const l = e.clientX - disX
+            const t = e.clientY - disY
+            // 计算移动当前元素的位置，并且给该元素样式中的left和top值赋值
+            target.style.left = l + &#39;px&#39;
+            target.style.top = (t &lt; minTop ? minTop : t) + &#39;px&#39;
+            if (Math.abs(l - initX) &gt; ifMoveSizeArea || Math.abs(t - initY) &gt; ifMoveSizeArea) &#123;
+                target.setAttribute(&#39;dragged&#39;, &#39;&#39;)
+            &#125; else &#123;
+                target.removeAttribute(&#39;dragged&#39;)
+            &#125;
+        &#125;
+        document.onmouseup = e =&gt; &#123;
+            document.onmousemove = null
+            document.onmouseup = null
+            document.onselectstart = null
+        &#125;
+        // return false不加的话可能导致黏连，拖到一个地方时div粘在鼠标上不下来，相当于onmouseup失效
+        return false
+    &#125;
+&#125;)
+</code></pre>
+<pre><code class="html">  使用：
+  1.可拖动元素需要有绝对定位
+  2.在可拖动元素上添加v-drag属性
+  功能：
+  1.添加drag-min-top属性可以设置能拖到的位置距离顶部多远
+  2.可以在元素内部使用属性v-drag此时只能点击添加属性的元素拖动
+  3.可以设置.position-p[dragged] 样式在移动一定位置后改变元素样式
+  &lt;div drag-min-top=&quot;100&quot; class=&quot;position-p&quot; v-drag&gt;
+&lt;!--    &lt;div v-drag style=&quot;height:  50px;background:#e8ffa4;&quot;&gt;点击此处才可以拖动&lt;/div&gt;--&gt;
+  &lt;/div&gt;
+
+&lt;style&gt;
+.position-p &#123;
+  top: 200px;
+  width: 300px;
+  height: 400px;
+  background: #ff9999;
+  position: absolute
+&#125;
+
+.position-p[dragged] &#123;
+  background: #8bebff;
+&#125;
+&lt;/style&gt;
 </code></pre>
 
       

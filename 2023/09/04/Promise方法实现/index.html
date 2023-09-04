@@ -2,9 +2,9 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <title>简易代码示例 | Hexo</title>
-  <meta name="keywords" content="">
-  <meta name="description" content="简易代码示例 | Hexo">
+  <title>Promise方法实现 | Hexo</title>
+  <meta name="keywords" content=" 前端面试 ">
+  <meta name="description" content="Promise方法实现 | Hexo">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 <meta name="description" content="Why Blog重新开始自己的网络空间，留一些纪念。记录生活知识 关于个人博客到目前为止已经写了篇文章， 共字。 本站访问人数：人次 ， 访问量：次">
 <meta property="og:type" content="website">
@@ -430,9 +430,9 @@
 </aside>
 <div id="post">
     <div class="pjax">
-        <article id="post-简易代码示例" class="article article-type-post" itemscope itemprop="blogPost">
+        <article id="post-Promise方法实现" class="article article-type-post" itemscope itemprop="blogPost">
     
-        <h1 class="article-title">简易代码示例</h1>
+        <h1 class="article-title">Promise方法实现</h1>
     
     <div class="article-meta">
         
@@ -442,22 +442,29 @@
             <i class="iconfont icon-category"></i>
             
             
-            <a  data-rel="工具">工具</a> > 
+            <a  data-rel="js">js</a> > 
             
-            <a  data-rel="工具&lt;---&gt;demo">demo</a>
+            <a  data-rel="js&lt;---&gt;理论知识">理论知识</a>
             
         </span>
         
         
+        <span class="tag">
+            <i class="iconfont icon-tag"></i>
+            
+            <a class="color5">前端面试</a>
+            
+        </span>
+        
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-03-04 15:40:24'>2022-12-08 22:12</time>
+            发布时间 : <time class="date" title='最后更新: 2023-09-04 19:50:22'>2023-09-04 19:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:267</span>
+        <span>字数:39</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -476,7 +483,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%A1%8C%E9%9D%A2%E5%BD%95%E5%88%B6"><span class="toc-text">桌面录制</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%BB%91%E5%AE%9A"><span class="toc-text">直接绑定</span></a></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -492,60 +499,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="桌面录制"><a href="#桌面录制" class="headerlink" title="桌面录制"></a>桌面录制</h1><pre><code class="html">&lt;!DOCTYPE html&gt;
-&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-    &lt;meta charset=&quot;UTF-8&quot;&gt;
-    &lt;title&gt;Title&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;button id=&quot;btn_st&quot;&gt;kaishi&lt;/button&gt;
-&lt;button id=&quot;btn_sp&quot;&gt;jieshu&lt;/button&gt;
-&lt;script&gt;
-    let recoder
-    // 绑定事件
-    document.getElementById(&#39;btn_st&#39;).addEventListener(&#39;click&#39;, async () =&gt; &#123;
-        // 获取视频流
-        let videos = await navigator.mediaDevices.getDisplayMedia(&#123;video: true&#125;)
-        // 获取麦克风音频流
-        let audios = await navigator.mediaDevices.getUserMedia(&#123;audio: true&#125;)
-        let trackqwe = []
-        // 合成视频音频
-        videos.getVideoTracks().forEach(t =&gt; trackqwe.push(t))
-        audios.getAudioTracks().forEach(t =&gt; trackqwe.push(t))
-        let stream = new MediaStream(trackqwe)
-        // 创建媒体录制器
-        recoder = new MediaRecorder(stream);
-        // 合成录制数据
-        let data = []
-        recoder.ondataavailable = function (ev) &#123;
-            data.push(ev.data)
-        &#125;
-        // 暂停下载视频
-        recoder.onstop = function () &#123;
-            this.stream.getTracks().forEach((track) =&gt; &#123;
-                return track.stop()
-            &#125;)
-            let blob = new Blob(data, &#123;type: this.mimeType&#125;)
-            let link = document.createElement(&#39;a&#39;)
-            link.href = URL.createObjectURL(blob)
-            link.download = new Date().getTime() + &#39;.mp4&#39;
-            document.body.appendChild(link)
-            link.click()
-            URL.revokeObjectURL(link.href)
-            link.remove()
-        &#125;
-        recoder.start()
-
-    &#125;)
-    // 停止录制
-    document.getElementById(&#39;btn_sp&#39;).addEventListener(&quot;click&quot;, function () &#123;
-        recoder.stop()
-    &#125;)
-&lt;/script&gt;
-&lt;/body&gt;
-&lt;/html&gt;
-</code></pre>
+        <h2 id="直接绑定"><a href="#直接绑定" class="headerlink" title="直接绑定"></a>直接绑定</h2><p>&lt;input id&#x3D;”btn1” type&#x3D;”button” οnclick&#x3D;”test();” &#x2F;&gt;</p>
+<p>使用这种方式绑定事件的时候事件对象需要从&#96;windo</p>
 
       
        <hr><span style="font-style: italic;color: gray;"> 欢迎指出任何有错误或不够清晰的表达。可以邮件至 1487968109@qq.com </span>

@@ -242,7 +242,7 @@
     </div>
 </div>
 <input type="hidden" id="yelog_site_posts_number" value="10">
-<input type="hidden" id="yelog_site_word_count" value="14.6k">
+<input type="hidden" id="yelog_site_word_count" value="15.8k">
 <div style="display: none">
     <span id="busuanzi_value_site_uv"></span>
     <span id="busuanzi_value_site_pv"></span>
@@ -459,12 +459,12 @@
     </div>
     <div class="article-meta">
         
-            发布时间 : <time class="date" title='最后更新: 2023-09-04 19:50:22'>2023-09-04 19:31</time>
+            发布时间 : <time class="date" title='最后更新: 2023-09-07 17:57:25'>2023-09-04 19:31</time>
         
     </div>
     <div class="article-meta">
         
-        <span>字数:39</span>
+        <span>字数:1.2k</span>
         
         
         <span id="busuanzi_container_page_pv">
@@ -483,7 +483,7 @@
     
     <div class="toc-ref">
     
-        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%B4%E6%8E%A5%E7%BB%91%E5%AE%9A"><span class="toc-text">直接绑定</span></a></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise%E7%9A%84%E5%90%AB%E4%B9%89"><span class="toc-text">Promise的含义</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Promise%E7%9A%84%E7%AE%80%E5%8D%95%E5%AE%9E%E7%8E%B0"><span class="toc-text">Promise的简单实现</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%8C%E6%AD%A5%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-text">同步函数处理流程</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BC%82%E6%AD%A5%E5%87%BD%E6%95%B0%E5%A4%84%E7%90%86%E6%B5%81%E7%A8%8B"><span class="toc-text">异步函数处理流程</span></a></li></ol></li></ol>
     
 <style>
     .left-col .switch-btn,
@@ -499,8 +499,200 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="直接绑定"><a href="#直接绑定" class="headerlink" title="直接绑定"></a>直接绑定</h2><p>&lt;input id&#x3D;”btn1” type&#x3D;”button” οnclick&#x3D;”test();” &#x2F;&gt;</p>
-<p>使用这种方式绑定事件的时候事件对象需要从&#96;windo</p>
+        <h1 id="Promise的含义"><a href="#Promise的含义" class="headerlink" title="Promise的含义"></a>Promise的含义</h1><p>所谓<code>Promise</code>，简单说就是一个容器，里面保存着某个未来才会结束的事件（通常是一个异步操作）的结果。从语法上说，Promise 是一个对象，从它可以获取异步操作的消息。Promise 提供统一的 API，各种异步操作都可以用同样的方法进行处理。</p>
+<p><code>promise</code>对象有以下两个特点。</p>
+<ol>
+<li>对象的状态不受外界影响，<code>promise</code>对象代表一个异步操作，有三种状态：<code>pending</code>	(进行中)、<code>fulfilled</code>（已成功）和<code>rejected</code>（已失败）。</li>
+<li>一旦状态改变，就不会再变，任何时候都可以得到这个结果。<code>Promise</code>对象的状态改变，只有两种可能：从<code>pending</code>变为<code>fulfilled</code>和从<code>pending</code>变为<code>rejected</code>。</li>
+</ol>
+<h1 id="Promise的简单实现"><a href="#Promise的简单实现" class="headerlink" title="Promise的简单实现"></a>Promise的简单实现</h1><h2 id="同步函数处理流程"><a href="#同步函数处理流程" class="headerlink" title="同步函数处理流程"></a>同步函数处理流程</h2><p>&#x2F;&#x2F;<code>Promise</code> 的使用是new 一个<code>Promise</code>对象所以使用class创建一个<code>Promise</code>类,初始化Promise接受一个参数，这个参数是个函数，并且这个函数接受两个参数也是函数</p>
+<pre><code class="js">
+class Promise &#123;
+        constructor(fun) &#123;
+            function resolve(data) &#123;&#125;
+            function reject(data) &#123;&#125;
+            fun(resolve,reject)
+        &#125;
+&#125;
+</code></pre>
+<p>&#x2F;&#x2F;  Promise函数结束会修改状态判断成功失败，resolve,reject中任意一个函数调用都代表函数结束，在这两个函数中设置状态值,并且保存函数的返回值</p>
+<pre><code class="js">class Promise &#123;
+    constructor(fun) &#123;
+        function resolve(data) &#123;
+            self.PromiseState = &#39;fulfilled&#39;//新增
+            self.PromiseResult = data//新增
+        &#125;
+
+        function reject(data) &#123;
+            self.PromiseState = &#39;rejected&#39;//新增
+            self.PromiseResult = data//新增
+
+        &#125;
+        this.PromiseState = &#39;pending&#39;//新增
+        this.PromiseResult = undefined//新增
+        const self = this
+        fun(resolve, reject)
+    &#125;
+&#125;
+</code></pre>
+<p>&#x2F;&#x2F; Promise对象有then方法，这个方法接收两个函数成功的回调和失败的回调,返回一个promise对象</p>
+<pre><code class="js">
+class Promise &#123;
+    constructor(fun) &#123;
+        function resolve(data) &#123;
+            self.PromiseState = &#39;fulfilled&#39;
+            self.PromiseResult = data
+        &#125;
+
+        function reject(data) &#123;
+            self.PromiseState = &#39;rejected&#39;
+            self.PromiseResult = data
+
+        &#125;
+        this.PromiseState = &#39;pending&#39;
+        this.PromiseResult = undefined
+        const self = this
+        fun(resolve, reject)
+    &#125;
+    then(resolve, reject) &#123;    //新增
+        return new Promise((toresolve, toreject) =&gt; &#123;//新增
+        &#125;)//新增
+    &#125;//新增
+&#125;
+</code></pre>
+<p>&#x2F;&#x2F;  完善then方法then方法 返回的promise对象的状态和结果是由成功或失败的回调决定的，因此先获取回调的结果，根据回调的结果给出then方法的结果,并且由于promise的状态不可更改所以先判断当前状态。</p>
+<pre><code class="js">class Promise &#123;
+    constructor(fun) &#123;
+        function resolve(data) &#123;
+            self.PromiseState = &#39;fulfilled&#39;
+            self.PromiseResult = data
+        &#125;
+
+        function reject(data) &#123;
+            self.PromiseState = &#39;rejected&#39;
+            self.PromiseResult = data
+
+        &#125;
+        this.PromiseState = &#39;pending&#39;
+        this.PromiseResult = undefined
+        const self = this
+        fun(resolve, reject)
+    &#125;
+
+    then(resolve, reject) &#123;
+        return new Promise((toresolve, toreject) =&gt; &#123;
+            if (this.PromiseState === &#39;fulfilled&#39;)&#123;//新增
+                const res = resolve(this.PromiseResult)//新增
+                //判断返回值是否是promise对象
+                if (res instanceof Promise)&#123;//新增
+                    //是promise对象返回promise对象对应的回调
+                    res.then(r=&gt;toreject(r),e=&gt;toreject(e))//新增
+                &#125;else &#123;//新增
+                    //不是promise对象直接返回
+                    toresolve(res)//新增
+                &#125;//新增
+            &#125;//新增
+        &#125;)
+    &#125;
+&#125;
+</code></pre>
+<p>因为失败也是相同的代码所以抽取出一个函数</p>
+<pre><code class="js">    then(resolve, reject) &#123;
+        const self = this
+        return new Promise((toresolve, toreject) =&gt; &#123;
+            function callback(type) &#123;
+                //添加异常捕获完善方法
+                try &#123;
+                    const res = type(self.PromiseResult)
+                    //判断返回值是否是promise对象
+                    if (res instanceof Promise) &#123;
+                        //是promise对象返回promise对象对应的回调
+                        res.then(r =&gt; toreject(r), e =&gt; toreject(e))
+                    &#125; else &#123;
+                        //不是promise对象直接返回
+                        toresolve(res)
+                    &#125;
+                &#125; catch (e) &#123;
+                    toresolve(e)
+                &#125;
+            &#125;
+
+            if (this.PromiseState === &#39;fulfilled&#39;) &#123;
+                callback(resolve)
+            &#125;
+
+            if (this.PromiseState === &#39;rejected&#39;) &#123;
+                callback(reject)
+            &#125;
+
+        &#125;)
+    &#125;
+</code></pre>
+<h2 id="异步函数处理流程"><a href="#异步函数处理流程" class="headerlink" title="异步函数处理流程"></a>异步函数处理流程</h2><p>处理同步函数时then方法得到的状态为pending，此时需要保存回调函数，等待异步函数运行完成的到结果，在将结果给到resolve, reject之一的回调函数，then方法可能连续调用所以需要用数组保存回调函数</p>
+<pre><code class="js">class Promise &#123;
+    constructor(fun) &#123;
+
+
+        function resolve(data) &#123;
+            self.PromiseState = &#39;fulfilled&#39;
+            self.PromiseResult = data
+            //如果是异步函数调用，只能在这里获取函数的返回，所以需要在这里调用之前存储的回调函数
+            self.callbackFunctions.forEach(value =&gt; value.resolve())
+        &#125;
+
+        function reject(data) &#123;
+            self.PromiseState = &#39;rejected&#39;
+            self.PromiseResult = data
+            self.callbackFunctions.forEach(value =&gt; value.reject())
+
+        &#125;
+        this.PromiseState = &#39;pending&#39;
+        this.PromiseResult = undefined
+        const self = this
+        fun(resolve, reject)
+    &#125;
+
+    then(resolve, reject) &#123;
+        const self = this
+
+        return new Promise((toresolve, toreject) =&gt; &#123;
+            function callback(type) &#123;
+                try &#123;
+                    const res = type(self.PromiseResult)
+                    if (res instanceof Promise) &#123;
+                        res.then(r =&gt; toreject(r), e =&gt; toreject(e))
+                    &#125; else &#123;
+                        toresolve(res)
+                    &#125;
+                &#125; catch (e) &#123;
+                    toresolve(e)
+                &#125;
+            &#125;
+
+            if (this.PromiseState === &#39;fulfilled&#39;) &#123;
+                callback(resolve)
+            &#125;
+
+            if (this.PromiseState === &#39;rejected&#39;) &#123;
+                callback(reject)
+            &#125;
+            // 异步函数调用
+            if (this.PromiseState === &#39;pending&#39;) &#123;
+                this.callbackFunctions =[]
+                this.callbackFunctions.push(&#123;
+                    resolve:()=&gt;&#123;
+                        callback(resolve)
+                    &#125;,
+                    reject:()=&gt;&#123;
+                        callback(reject)
+                    &#125;,
+                &#125;)
+            &#125;
+
+        &#125;)
+    &#125;
+&#125;
+</code></pre>
 
       
        <hr><span style="font-style: italic;color: gray;"> 欢迎指出任何有错误或不够清晰的表达。可以邮件至 1487968109@qq.com </span>
